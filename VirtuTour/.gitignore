@@ -1,0 +1,467 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Expo
+.expo/
+__generated__/
+
+# Android
+android/
+build/
+
+# iOS
+ios/
+Pods/
+*.xcworkspace/
+*.xcuserdatad/
+*.log
+
+# Gradle
+.gradle/
+build/
+
+# VS Code
+.vscode/
+
+# Expo build artifacts
+*.ipa
+*.apk
+
+# Keystore files
+*.jks
+
+# npm
+*.npm
+*.log
+
+# Yarn
+yarn-error.log
+.pnp.*
+.yarn-integrity
+
+# Jest
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Typescript
+*.tsbuildinfo
+
+# Misc
+.DS_Store
+Desktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains
+.idea/
+
+# .env file
+.env
+
+# Expo web
+web-build/
+
+# Next.js
+.next/
+out/
+
+# Nest.js
+/dist/
+
+# Serverless
+.serverless/
+
+# Gatsby
+.cache/
+public/
+
+# Cypress
+cypress/screenshots/
+cypress/videos/
+
+# Storybook
+storybook-static/
+
+# FuseBox
+.fusebox/
+
+# Meteor
+.meteor/local/
+/.meteor/
+
+# Parcel
+.cache/
+dist/
+
+# Puppeteer
+node_modules/.puppeteer/
+
+# Svelte
+node_modules/svelte/
+public/build/
+
+# Rollup
+node_modules/.rts2_cache_cjs/
+node_modules/.rts2_cache_es/
+node_modules/.rts2_cache_umd/
+
+# Nuxt.js
+.nuxt/
+dist/
+
+# Nest
+/dist/
+/node_modules/
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Zeit
+.now/
+
+# Tye
+.tye/
+
+# Quasar
+dist/
+quasar.conf.js
+
+# Codenvy
+.codenvy/
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains
+.idea/
+
+# Node.js
+node_modules/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Eclipse
+.classpath
+.project
+.settings/
+*.launch
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# WebStorm
+.idea/
+
+# Visual Studio
+.vs/
+*.suo
+*.ntvs_analysis.dat
+*.cproj
+*.sln
+*.suo
+*.user
+*.userosscache
+*.suo
+*.suo.lock
+*.v11.suo
+[Tt]humbs.db
+*.dbmdl
+*.dbproj.user
+*.userosscache
+*.suo
+*.suo.lock
+*.v11.suo
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]inaries/
+[Ll]og/
+[Ll]ogs/
+[Ll]ogFiles/
+[Oo]bj/
+[Ll] *.ilk
+[Ll] *.meta
+[Ll] *.obj
+[Ll] *.pch
+[Ll] *.pdb
+[Ll] *.pgc
+[Ll] *.pgd
+[Ll] *.rsp
+[Ll] *.sbr
+[Ll] *.tlb
+[Ll] *.tli
+[Ll] *.tlh
+[Ll] *.tmp
+[Ll] *.tmp_proj
+[Ll] *.log
+[Ll] *.vspscc
+[Ll] *.vssscc
+[Ll] .bak
+[Ll] .bak
+[Ll] ~
+[Ll] .DS_Store
+*.DS_Store
+[Ll] Thumbs.db
+[Ll] .Spotlight-V100
+[Ll] .Trashes
+[Ll] Icon?
+[Ll] ehthumbs.db
+[Ll] [Tt]humbs.db
+[Ll] [Dd]esktop.ini
+[Ll] $RECYCLE.BIN/
+[Ll] [Rr]ecycler/
+[Ll] [Ss]ystem [Vv]olume [Ii]nformation/
+[Ll] .vscode
+[Ll] .expo/
+[Ll] .env
+[Ll] .env.local
+[Ll] .env.development
+[Ll] .env.production
+[Ll] .env.test
+[Ll] coverage/
+[Ll] build/
+
+# Misc
+Thumbs.db
+Thumbs.db
+Desktop.ini
+Desktop.ini
+*.log
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+.pnp
+.pnp.js
+.pnp.cjs
+
+# Prettier
+*.log
+
+# Expo Web
+web-build/
+
+# Angular
+dist/
+*.class
+*.egg-info/
+*.egg
+*.pyc
+*.pyo
+*.pyd
+
+# Node
+logs/
+*.log
+
+# Yarn
+yarn-debug.log*
+yarn-error.log*
+
+# npm
+*.npmrc
+*.yarn-integrity
+/.yarn-metadata.json
+/.yarn-integrity.json
+/node_modules
+/.pnp
+/.pnp.js
+/.pnp.json
+
+# TypeScript
+*.tsbuildinfo
+*.tsv
+*.yml
+
+# Bazel
+.bazelrc
+.bazelignore
+/bazel-out/
+/bazel-bin/
+/bazel-testlogs/
+/build/
+/blaze-out/
+
+# Buck
+.buckd/
+.buckconfig.local
+/buckaroo/
+/buck-cache/
+/.buckd/
+/buck-out/
+/.buckversion
+/buckminster.name/
+/checkout.buckconfig
+/.buckconfig.local
+
+# SASS
+.sass-cache/
+*.css.map
+
+# Symfony
+/app/bootstrap.php.cache
+/app/cache/
+/app/logs/
+/var/
+
+# Twig
+*.cache
+
+# Zend
+/.zfproject.xml
+/vendor/
+
+# Symfony Flex
+/.symfony/
+/var/
+
+# Codeception
+/.c3/
+
+# Yii
+/runtime/
+/vendor/
+/web/assets/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.suo.lock
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+
