@@ -16,7 +16,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan documents.",
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to provide navigation directions."
+      },
+      "supportsTablet": true,
+      "bundleIdentifier": "com.company.virtutour"
     },
     "android": {
       "adaptiveIcon": {

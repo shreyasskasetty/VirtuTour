@@ -1,13 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { Stack } from "expo-router";
+import Map from '../components/map/map.js'
 
-
-export default function App() {
+export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Stack.Screen
+          options={{
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTitle: "",
+          }}
+        />
+       <Map />
+      </SafeAreaView>
   );
 }
 

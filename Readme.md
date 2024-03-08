@@ -1,7 +1,14 @@
 
 # VirtuTour
 
-## Overview
+## 📋 <a name="table">Table of Contents</a>
+
+1. 🤖 [Introduction](#introduction)
+2. ⚙️  [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 🤸 [Quick Start](#quick-start)
+5. 📖 [Contributor Guide](#contributor-guide)
+## <a name="introduction">🤖 Introduction</a>
 
 VirtuTour app offers an innovative way to explore Texas A&M University by providing an immersive, interactive virtual tour guide experience. As users navigate through the campus, VirtuTour detects their proximity to historic sites and landmarks, automatically presenting rich audio narratives and visual stories that delve into the history and culture of each location. This app is perfect for enhancing the campus visit experience, offering a deep dive into the university's heritage in a modern, engaging way.
 
@@ -10,7 +17,12 @@ VirtuTour app offers an innovative way to explore Texas A&M University by provid
 <img src="https://img.shields.io/badge/-Expo-black?style=for-the-badge&logoColor=white&logo=expo&color=000020" alt="expo" />
 </div>
 
-## Features
+## <a name="tech-stack">⚙️ Tech Stack</a>
+ - Node.js
+ - React Native
+ - Expo
+
+## <a name="features">🔋 Features</a>
 
 - **Proximity-Based Narratives:** As you approach different landmarks on the campus, the app automatically triggers audio stories and visual content, sharing the history and significance of each location.
 - **Immersive Audio Tours:** Enjoy captivating audio guides that offer insights into the university's traditions, achievements, and historical milestones.
@@ -19,10 +31,7 @@ VirtuTour app offers an innovative way to explore Texas A&M University by provid
 - **Easy Navigation:** The app's user-friendly interface ensures a seamless experience as you explore Texas A&M University.
 
 
-## Technical Stack:
- - Node.js
- - React Native
- - Expo
+
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
@@ -50,13 +59,13 @@ Run the below command to export application bundle to Android or iOS
 npx expo start
 ```
 
-## Expo Client:
+### Expo Client:
 There are two options to setup the Expo Client:
 1. Download an app called Expo Client. Scan the QR code on the app.
 2. Setup the Simulator for Android/IOS
 
 
-## Contributor Guide
+## <a name="contributor-guide">📖 Contributor Guide</a>
 
 ### Project Structure
 ```plaintext
