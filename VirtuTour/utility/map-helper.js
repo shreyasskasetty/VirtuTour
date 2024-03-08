@@ -4,6 +4,7 @@ import * as Location from 'expo-location'
 
 export const getCurrentLocation = () => new Promise(async (resolve, reject)=>{
     location = await Location.getCurrentPositionAsync({})
+    console.log(location)
     const { latitude, longitude } = location.coords;
     return resolve({latitude, longitude})
 }).catch((error)=> {

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
-const LATITUDE_DELTA = 0.04;
+const LATITUDE_DELTA = 0.005;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const Map = () => {
@@ -22,10 +22,8 @@ const Map = () => {
 
     const getLiveLocation = async () => {
         const locationPermissionStatus = await locationPermission()
-        console.log("location permission", locationPermissionStatus)
         if(locationPermissionStatus){
           const {latitude, longitude} = await getCurrentLocation();
-          console.log("latitude: ",latitude, "longitude: ",longitude)
           updateState({
               currentLocation: { latitude: latitude, longitude: longitude },
           })
@@ -37,7 +35,7 @@ const Map = () => {
       useEffect(() => {
         const interval = setInterval(() => {
             getLiveLocation()
-        }, 6000);
+        }, 2000);
         return () => clearInterval(interval)
       }, [])
 
