@@ -1,10 +1,17 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, 
+        } from 'react-native';
+import {useRef} from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from "expo-router";
 import Map from '../components/map/map.js'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import BottomSheet from '../components/common/BottomSheets/BottomSheet.tsx';
 
 export default function Home() {
+  const mapRef = useRef();
   return (
-      <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <SafeAreaView style={styles.container}>
         <Stack.Screen
           options={{
             headerTransparent: true,
@@ -12,16 +19,17 @@ export default function Home() {
             headerTitle: "",
           }}
         />
-       <Map />
+         <Map mapRef={mapRef}/>
+          <BottomSheet />
       </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})

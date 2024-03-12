@@ -1,15 +1,14 @@
 import MapView,{ PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import {View,StyleSheet, Dimensions} from 'react-native';
 import { locationPermission, getCurrentLocation} from '../../utility/map-helper';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
 const LATITUDE_DELTA = 0.005;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const Map = () => {
-    const mapRef = useRef();
+const Map = ({mapRef}) => {
     const [state, setState] = useState({
       currentLocation: {
         latitude: 30.5921396,
@@ -47,12 +46,6 @@ const Map = () => {
                 ref={mapRef}
                 style={StyleSheet.absoluteFill}
                 initialRegion={{
-                    ...currentLocation,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                }}
-                
-                region={{
                     ...currentLocation,
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA,
