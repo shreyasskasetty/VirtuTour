@@ -15,12 +15,18 @@ const styles = StyleSheet.create({
         }
     },
     line: {
-        width: 50,
+        width: 35,
         height: 3,
+        opacity: 0.5,
         backgroundColor: 'grey',
         alignSelf: 'center',
         marginVertical: 10,
         borderRadius: 25
+    },
+    bottomSheetHeading:{
+        paddingLeft: 20,
+        fontSize: 30,
+        fontWeight: '600'
     }
 })
 

@@ -1,13 +1,16 @@
-import {View} from 'react-native';
-import React, { useCallback, useEffect } from 'react';
+import {View, Text} from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import {Gesture,  GestureDetector } from 'react-native-gesture-handler';
 import Animated, {Extrapolate,interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import styles from './BottomSheet.style.js'
 import { HALF_SCREEN_TRANSLATE_Y, QUARTER_SCREEN_STRANLATE_Y, MAX_TRANSLATE_Y } from '../../../constants/data/data';
+import Routes from '../../routes/Routes';
+import Toggle from '../../routes/Toggle';
 
 const BottomSheet = () =>{
     const translateY = useSharedValue(0);
     const context = useSharedValue({y: 0});
+    const [selectedOption, setSelectedOption] = useState(0);
 
     const scrollTo = useCallback((destination: number) => {
         "worklet";
@@ -62,6 +65,9 @@ const BottomSheet = () =>{
        <GestureDetector gesture={gesture}>
             <Animated.View style = {[styles.bottomSheetContainer, rBottomSheetStyle]} > 
                 <View style={styles.line} />
+                <Text style={styles.bottomSheetHeading}>Routes</Text>
+                <Toggle selectedOption = {selectedOption} setSelectedOption = {setSelectedOption}/>
+                <Routes selectedOption={selectedOption}/>
             </Animated.View>
         </GestureDetector>
     );
