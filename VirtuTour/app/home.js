@@ -5,6 +5,7 @@ import { Stack } from "expo-router";
 import Map from '../components/map/map.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet from '../components/common/BottomSheets/BottomSheet.tsx';
+import CommonBottomSheet from '../components/common/BottomSheets/CommonBottomSheet.tsx';
 
 export default function Home() {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
@@ -33,7 +34,8 @@ export default function Home() {
             <Text style={styles.buttonText}>Roam</Text>
           </TouchableOpacity>
         </View>
-        {bottomSheetVisible && <BottomSheet />}
+        {/* {bottomSheetVisible && <BottomSheet />} */}
+        {bottomSheetVisible && <CommonBottomSheet />}
       </SafeAreaView>
     </GestureHandlerRootView>
   );

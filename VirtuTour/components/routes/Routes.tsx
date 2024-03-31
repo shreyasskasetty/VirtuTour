@@ -6,10 +6,17 @@ import { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen')
 
-const Routes = ({selectedOption}) => {
+const Routes = ({ selectedOption, onRouteSelect }) => {
     const recommendedLocations = []
     /*NOTE: change locations to routes. Add a new file in map called routes and create different routes*/
     const places = selectedOption === 0?locations : recommendedLocations;
+
+    // Function to handle route selection
+    const handleRouteSelect = (routeName) => {
+        // Invoke the callback function to pass the name of selected route to the parent
+        onRouteSelect(routeName);
+    };
+
     return(
         <View>
             <View style={styles.line}/>
@@ -20,7 +27,7 @@ const Routes = ({selectedOption}) => {
                         No Recommended Routes
                     </Text>
                     ):places.map(route => (
-                    <TouchableOpacity>
+                    <TouchableOpacity key={route.name} onPress={() => handleRouteSelect(route.name)}>
                         <RouteCard
                             key={route.name}
                             routeName={route.name}
