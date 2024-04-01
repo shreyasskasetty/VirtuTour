@@ -2,6 +2,7 @@ import MapView,{ PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import {View,StyleSheet, Dimensions} from 'react-native';
 import { locationPermission, getCurrentLocation} from '../../utility/map-helper';
 import { useEffect, useState } from 'react';
+import Narration from '../audio/audio';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
@@ -34,13 +35,14 @@ const Map = ({mapRef}) => {
       useEffect(() => {
         const interval = setInterval(() => {
             getLiveLocation()
-        }, 2000);
+        }, 3000);
+
         return () => clearInterval(interval)
       }, [])
 
-
     return (
         <View style={styles.container}>
+            <Narration currentLocation={state.currentLocation}/>
             <MapView
                 provider= {PROVIDER_GOOGLE}
                 ref={mapRef}
@@ -51,7 +53,6 @@ const Map = ({mapRef}) => {
                     longitudeDelta: LONGITUDE_DELTA,
                 }}
             >
-
             <Marker
                 coordinate={currentLocation}
                 title={"title"}
@@ -73,5 +74,5 @@ const Map = ({mapRef}) => {
       ...StyleSheet.absoluteFillObject,
     }
   });
-  
+
 export default Map;
