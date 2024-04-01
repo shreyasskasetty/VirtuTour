@@ -12,9 +12,9 @@ const Routes = ({ selectedOption, onRouteSelect }) => {
     const places = selectedOption === 0?locations : recommendedLocations;
 
     // Function to handle route selection
-    const handleRouteSelect = (routeName) => {
+    const handleRouteSelect = (route) => {
         // Invoke the callback function to pass the name of selected route to the parent
-        onRouteSelect(routeName);
+        onRouteSelect(route);
     };
 
     return(
@@ -27,7 +27,7 @@ const Routes = ({ selectedOption, onRouteSelect }) => {
                         No Recommended Routes
                     </Text>
                     ):places.map(route => (
-                    <TouchableOpacity key={route.name} onPress={() => handleRouteSelect(route.name)}>
+                    <TouchableOpacity key={route.name} onPress={() => handleRouteSelect(route)}>
                         <RouteCard
                             key={route.name}
                             routeName={route.name}
