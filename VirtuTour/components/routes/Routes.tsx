@@ -20,7 +20,7 @@ const Routes = ({selectedOption}) => {
                         No Recommended Routes
                     </Text>
                     ):places.map(route => (
-                    <TouchableOpacity>
+                    <TouchableOpacity key={route.name+"_TO"}>
                         <RouteCard
                             key={route.name}
                             routeName={route.name}
