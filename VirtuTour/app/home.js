@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     position: 'absolute',
-    bottom: 300,
+    bottom: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

@@ -41,7 +41,7 @@ const BottomSheet = () =>{
         }
         if(translateY.value > MAX_TRANSLATE_Y && translateY.value < MAX_TRANSLATE_Y - QUARTER_SCREEN_STRANLATE_Y/2){
             scrollTo(HALF_SCREEN_TRANSLATE_Y)
-        }
+        }        
     });
 
 

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {Gesture,  GestureDetector } from 'react-native-gesture-handler';
 import Animated, {Extrapolate,interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import styles from './BottomSheet.style.js'
-import { HALF_SCREEN_TRANSLATE_Y, QUARTER_SCREEN_STRANLATE_Y, MAX_TRANSLATE_Y } from '../../../constants/data/data';
+import { HALF_SCREEN_TRANSLATE_Y, QUARTER_SCREEN_STRANLATE_Y, MAX_TRANSLATE_Y, MIN_TRANSLATE_Y } from '../../../constants/data/data';
 import CustomBottomSheetContent from './CustomBottomSheet';
 
 const CommonBottomSheet = () =>{
@@ -40,6 +40,9 @@ const CommonBottomSheet = () =>{
         }
         if(translateY.value > MAX_TRANSLATE_Y && translateY.value < MAX_TRANSLATE_Y - QUARTER_SCREEN_STRANLATE_Y/2){
             scrollTo(HALF_SCREEN_TRANSLATE_Y)
+        }
+        if (translateY.value > QUARTER_SCREEN_STRANLATE_Y/2) {
+            scrollTo(MIN_TRANSLATE_Y);
         }
     });
 
