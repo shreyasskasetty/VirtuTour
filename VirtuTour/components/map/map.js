@@ -4,6 +4,7 @@ import { locationPermission, getCurrentLocation, getAllRoutePoints} from '../../
 import { useEffect, useState } from 'react';
 import {getCenterLocation} from '../../utility/helper.js'
 import {locations} from '../../constants/map/places'; 
+import Narration from '../audio/audio';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
@@ -74,8 +75,10 @@ const Map = ({mapRef}) => {
           centerLocation: centerLocation
         }))
       },[]);
+  
     return (
         <View style={styles.container}>
+            <Narration currentLocation={state.currentLocation}/>
             <MapView
                 provider= {PROVIDER_GOOGLE}
                 ref={mapRef}
@@ -108,6 +111,7 @@ const Map = ({mapRef}) => {
                   );
               })
             }
+
             <Marker
                 coordinate={currentLocation}
                 title={"title"}
@@ -129,5 +133,5 @@ const Map = ({mapRef}) => {
       ...StyleSheet.absoluteFillObject,
     }
   });
-  
+
 export default Map;
