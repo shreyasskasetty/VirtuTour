@@ -48,17 +48,18 @@ const SimpsonDrillField = {
 
 const ZachryBuilding = {
     name: "Zachry Building",
-    latitude: 30.621311576033, 
-    longitude: -96.34037325998715
+    latitude: 30.62129670181836,
+    longitude:  -96.34036524442861
 }
 
 const HaynesEngineeringBuilding = {
     name: "Haynes Engineering Building",
-    latitude: 30.621311576033, 
-    longitude: -96.34037325998715
+    latitude: 30.6198218441582,  
+    longitude: -96.33889430585573,
 }
 
-const locations = [SterlingCEvansLibrary,
+const locations = [
+    SterlingCEvansLibrary,
     BrightBuilding,
     CenturyTree,
     RudderComplex,
@@ -71,5 +72,15 @@ const locations = [SterlingCEvansLibrary,
     ]
 
 export {
-    locations
+    locations,
+    SterlingCEvansLibrary,
+    BrightBuilding,
+    CenturyTree,
+    RudderComplex,
+    AggiePark,
+    KyleField,
+    MemorialStudentCenter,
+    SimpsonDrillField,
+    ZachryBuilding,
+    HaynesEngineeringBuilding
 }

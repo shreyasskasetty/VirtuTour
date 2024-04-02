@@ -51,12 +51,17 @@ Make sure you have the following installed on your machine:
 git clone https://github.com/Sathvik10/VirtuTour.git
 cd VirtuTour
 ```
+**Set up development ENV variables**
+1. Create a `.env.development` file in the root folder `VirtuTour/VirtuTour/.`
+2. Add a Google Maps API key. Set the following env variable: `EXPO_PUBLIC_GOOGLE_API_KEY`
 
-**Start the React Native project**
+NOTE: All expo env variables should start with a prefix `EXPO_PUBLIC_[name]`. `name` here can be the env variable name
+
+**Start the React Native project in Development Mode**
 Run the below command to export application bundle to Android or iOS
 
 ```bash
-npx expo start
+NODE_ENV=development npx expo start
 ```
 
 ### Expo Client:

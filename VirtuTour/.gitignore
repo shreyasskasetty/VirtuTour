@@ -453,6 +453,8 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+.env*.local
+
 # Windows shortcuts
 *.lnk
 

@@ -2,12 +2,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const RouteCard = ({routeName, colorIndicator}) => (
+const RouteCard = ({sourceName, destinationName, colorIndicator}) => (
     <View style={styles.cardContainer}>
-      <View style={[styles.colorIndicator, {backgroundColor: 'grey'}]} />
+      <View style={[styles.colorIndicator, {backgroundColor: colorIndicator}]} />
       <View style={styles.routeDetails}>
-        <Text style={styles.routeName}>{routeName}</Text>
-        <Text style={styles.finalDestination}>{'Century Tree'}</Text>
+        <Text style={styles.routeName}>{sourceName}</Text>
+        <Text style={styles.finalDestination}>{destinationName}</Text>
       </View>
     </View>
   );
