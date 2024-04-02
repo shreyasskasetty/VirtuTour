@@ -19,8 +19,8 @@ export default function Home() {
             headerTitle: "",
           }}
         />
-         <Map mapRef={mapRef}/>
-          <BottomSheet />
+        <Map mapRef={mapRef}/>
+        <BottomSheet />
       </SafeAreaView>
     </GestureHandlerRootView>
   );
