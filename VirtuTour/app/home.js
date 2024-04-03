@@ -2,10 +2,9 @@ import { StyleSheet, View, TouchableOpacity, Text  } from 'react-native';
 import { useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from "expo-router";
-import Map from '../components/map/map.js'
+import Map from './components/map/map.js'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import BottomSheet from '../components/common/BottomSheets/BottomSheet.tsx';
-import CommonBottomSheet from '../components/common/BottomSheets/CommonBottomSheet.tsx';
+import CommonBottomSheet from './components/common/BottomSheets/CommonBottomSheet.tsx';
 
 export default function Home() {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);

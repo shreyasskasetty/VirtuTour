@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {Gesture,  GestureDetector } from 'react-native-gesture-handler';
 import Animated, {Extrapolate,interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import styles from './BottomSheet.style.js'
-import { HALF_SCREEN_TRANSLATE_Y, QUARTER_SCREEN_STRANLATE_Y, MAX_TRANSLATE_Y, MIN_TRANSLATE_Y } from '../../../constants/data/data';
-import CustomBottomSheetContent from './CustomBottomSheet';
+import { HALF_SCREEN_TRANSLATE_Y, QUARTER_SCREEN_STRANLATE_Y, MAX_TRANSLATE_Y, MIN_TRANSLATE_Y } from '../../../constants/data/data.js';
+import CustomBottomSheetContent from './CustomBottomSheet.tsx';
 
 const CommonBottomSheet = () =>{
     const translateY = useSharedValue(0);

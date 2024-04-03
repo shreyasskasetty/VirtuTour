@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import styles from './BottomSheet.style.js';
-import RouteDetails from './RouteDetails';
-import RoutesAndToggle from './RoutesAndToggle';
+import RouteDetails from './RouteDetails.tsx';
+import RoutesAndToggle from './RoutesAndToggle.tsx';
 
 const CustomBottomSheetContent = () => {
   const [selectedOption, setSelectedOption] = useState(0);
