@@ -1,6 +1,6 @@
 import {Dimensions} from 'react-native';
 
-const {height: SCREEN_HEIGHT} = Dimensions.get('window');
+const {height: SCREEN_HEIGHT, width: SCREEN_WIDTH} = Dimensions.get('window');
 
 const getScreenSize = (percentage)=> {
     return - SCREEN_HEIGHT * percentage/100
@@ -21,4 +21,4 @@ const getCenterLocation = (routes) => {
     const averageLng = totalCount > 0 ? totalLng / totalCount : 0;
     return {latitude: averageLat, longitude: averageLng}
 }
-export {SCREEN_HEIGHT, getScreenSize, getCenterLocation};
+export {SCREEN_HEIGHT, SCREEN_WIDTH, getScreenSize, getCenterLocation};

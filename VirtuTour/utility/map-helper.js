@@ -3,15 +3,22 @@ import * as Location from 'expo-location'
 import routes from '../constants/map/routes'; 
 
 export const getCurrentLocation = () => new Promise(async (resolve, reject)=>{
-    try{
-        location = await Location.getCurrentPositionAsync({})
-        // console.log(location)
-        const { latitude, longitude } = location.coords;
-        return resolve({latitude, longitude})
-    }catch(error){
-        return reject(error)
+    serviceEnabled = await Location.hasServicesEnabledAsync()
+    if(!serviceEnabled)
+    {
+        return reject("Location disabled")
     }
-});
+    location = await Location.getCurrentPositionAsync({
+        enableHighAccuracy: true,
+        accuracy:  Location.Accuracy.BestForNavigation,
+    })
+    // console.log(location)
+    const { latitude, longitude } = location.coords;
+    return resolve({latitude, longitude})
+}).catch((error)=> {
+    return reject(error)
+})
+
 
 export const locationPermission = () => new Promise(async (resolve, reject)=>{
     try{

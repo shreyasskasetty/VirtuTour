@@ -36,11 +36,11 @@ const Map = ({mapRef}) => {
     const getLiveLocation = async () => {
         const locationPermissionStatus = await locationPermission();
         if(locationPermissionStatus){
+          // ToDo : Handle case for reject
           const {latitude, longitude} = await getCurrentLocation();
           updateState({
               currentLocation: { latitude: latitude, longitude: longitude },
           })
-
         }
         
       }
