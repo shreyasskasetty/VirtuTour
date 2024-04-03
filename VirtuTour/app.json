@@ -18,7 +18,8 @@
     "ios": {
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to scan documents.",
-        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to provide navigation directions."
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to provide navigation directions.",
+        "NSMicrophoneUsageDescription" : "Allow app to access your microphone"
       },
       "supportsTablet": true,
       "bundleIdentifier": "com.company.virtutour"
@@ -27,13 +28,28 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.company.virtutour"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router"
-    ]
+      "expo-router",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1cc85d2b-6f06-4c68-a447-11ce7b4f072f"
+      }
+    }
   }
 }
