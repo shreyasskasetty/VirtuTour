@@ -3,7 +3,15 @@ import {Platform} from 'react-native'
 import * as Location from 'expo-location'
 
 export const getCurrentLocation = () => new Promise(async (resolve, reject)=>{
-    location = await Location.getCurrentPositionAsync({})
+    serviceEnabled = await Location.hasServicesEnabledAsync()
+    if(!serviceEnabled)
+    {
+        return reject("Location disabled")
+    }
+    location = await Location.getCurrentPositionAsync({
+        enableHighAccuracy: true,
+        accuracy:  Location.Accuracy.BestForNavigation,
+    })
     // console.log(location)
     const { latitude, longitude } = location.coords;
     return resolve({latitude, longitude})

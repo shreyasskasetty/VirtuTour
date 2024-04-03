@@ -34,8 +34,12 @@ const AudioControls = () => {
         }
     }
 
-    const getSoundSource = async (sourceUrl, volumne = 1 ,shouldPlay=true) => {
-        const {sound } = await Audio.Sound.createAsync({uri: sourceUrl, overrideFileExtensionAndroid: "mp3"}, {shouldPlay: shouldPlay})
+    const getSoundSource = async (sourceUrl, volume = 1 , options = {} ,shouldPlay=true) => {
+        const {sound } = await Audio.Sound.createAsync({uri: sourceUrl, overrideFileExtensionAndroid: "mp3"}, {
+            shouldPlay: shouldPlay,
+            volume:volume,
+            ...options
+        })
         return sound
     }
 
@@ -50,6 +54,9 @@ const AudioControls = () => {
 
     const setVolume = async (source, volumne) => {
 
+        if(!source)
+            return
+
         const status = await getStatus(source)
 
         if(status?.isLoaded)
@@ -58,15 +65,10 @@ const AudioControls = () => {
             {
                 sourceStatus = await getStatus(source)
                 currentVolume = sourceStatus.volumne
-                if (source && currentVolume !== volumne)
+                if (currentVolume !== volumne)
                 {
                     await source.setVolumeAsync(volumne)
                 }
-            }
-            else if (volumne <= 0)
-            {
-                console.log("Unloading a song, because volume is zero")
-                unloadAudio(source)
             }
         }
     }

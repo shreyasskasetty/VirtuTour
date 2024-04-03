@@ -69,8 +69,8 @@ const FoxRunBasketBallCourt = {
 
 const London2311 = {
     name: "London 2311",
-    latitude: 30.590719307841056, 
-    longitude: -96.34259964414836,
+    latitude: 30.590578606177363, 
+    longitude: -96.34264845876957,
     track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
