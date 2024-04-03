@@ -6,9 +6,16 @@ import routes from '../../constants/map/routes.js'
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen')
 
-const Routes = ({selectedOption}) => {
+const Routes = ({ selectedOption, onRouteSelect }) => {
     const recommendedLocations = []
     /*NOTE: change locations to routes. Add a new file in map called routes and create different routes*/
+
+    // Function to handle route selection
+    const handleRouteSelect = (route) => {
+        // Invoke the callback function to pass the name of selected route to the parent
+        onRouteSelect(route);
+    };
+
     const places = selectedOption === 0? routes : recommendedLocations;
     return(
         <View>
@@ -20,7 +27,8 @@ const Routes = ({selectedOption}) => {
                         No Recommended Routes
                     </Text>
                     ):places.map(route => (
-                    <TouchableOpacity key={route.source.name}>
+                    <TouchableOpacity key={route.source.name} onPress={() => handleRouteSelect(route)}>
+                    {/* <TouchableOpacity key={route.source.name}> */}
                         <RouteCard
                             key={route.source.name}
                             sourceName={route.source.name}
