@@ -467,3 +467,4 @@ $RECYCLE.BIN/
 *.userosscache
 *.suo
 
+.env.development
