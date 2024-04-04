@@ -15,49 +15,57 @@ const BrightBuilding = {
 const CenturyTree = {
     name: "Century Tree",
     latitude: 30.615992293486226, 
-    longitude: -96.34136807625028
+    longitude: -96.34136807625028,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const RudderComplex = {
     name: "Rudder Complex",
     latitude: 30.613412596419227, 
-    longitude: -96.33994268357311
+    longitude: -96.33994268357311,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const AggiePark = {
     name: "Aggie Park",
     latitude: 30.610393413384177, 
-    longitude: -96.33763575863327
+    longitude: -96.33763575863327,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const KyleField = {
     name: "Kyle Field",
     latitude: 30.610185221118854, 
-    longitude: -96.34010346175411
+    longitude: -96.34010346175411,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const MemorialStudentCenter = {
     name: "Memorial Student Center (MSC)",
     latitude: 30.61230065086328, 
-    longitude: -96.34152923209598
+    longitude: -96.34152923209598,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const SimpsonDrillField = {
     name: "Simpson Drill Field",
     latitude: 30.61358754281808, 
-    longitude: -96.3428402171899
+    longitude: -96.3428402171899,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const ZachryBuilding = {
     name: "Zachry Building",
     latitude: 30.62129670181836,
-    longitude:  -96.34036524442861
+    longitude:  -96.34036524442861,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 const HaynesEngineeringBuilding = {
     name: "Haynes Engineering Building",
     latitude: 30.6198218441582,  
     longitude: -96.33889430585573,
+    track : 'https://sample-music.netlify.app/Bad%20Liar.mp3'
 }
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import Routes from '../../routes/Routes';
 import Toggle from '../../routes/Toggle';
-import styles from './BottomSheet.style.js';
+import styles from './RoutesList.style.js';
 
 interface RoutesAndToggleProps {
   selectedOption: number;

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.1",
+    "@reduxjs/toolkit": "^2.2.3",
     "@types/react": "~18.2.45",
     "expo": "^50.0.14",
     "expo-av": "^13.10.5",
