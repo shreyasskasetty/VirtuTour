@@ -3,8 +3,8 @@ import {View,StyleSheet, Dimensions} from 'react-native';
 import { locationPermission, getCurrentLocation, getAllRoutePoints} from '../../utility/map-helper';
 import { useEffect, useState } from 'react';
 import {getCenterLocation} from '../../utility/helper.js'
-import {locations} from '../../constants/map/places'; 
-import Narration from '../audio/audio';
+import {locations} from '../../constants/map/places.js'; 
+import Narration from '../audio/audio.js';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
-import styles from './BottomSheet.style.js';
+import styles from './RoutesList.style.js';
 
 interface RouteDetailsProps {
   selectedRoute: {

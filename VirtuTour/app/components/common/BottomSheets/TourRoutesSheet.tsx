@@ -1,17 +1,23 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, SafeAreaView } from 'react-native';
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
+import { setTourType } from '../../../context/actions/buttonActions';
+import {connect} from 'react-redux';
+import RoutesList from './RoutesList'
 
-const TourRoutesSheet = ({mapRef, onFocusChange}) => {
+const TourRoutesSheet = ({setTourType}) => {
+
   const { width } = useWindowDimensions();
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => ['25%', '50%', '70%'], []);
+  const snapPoints = useMemo(() => ['25%','70%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {
     const focused = index !== -1;
-    console.log('handleSheetChanges', index,focused);
-    onFocusChange && onFocusChange(focused);
-  }, [onFocusChange]);
+    if(index === -1){
+      setTourType({tourOption: null});
+    }
+    console.log('handleSheetChanges', index);
+  }, []);
 
   const renderBackdropComponent = useCallback(
     (props : any) => (
@@ -20,23 +26,25 @@ const TourRoutesSheet = ({mapRef, onFocusChange}) => {
     []
   );
   
+  
   return (
-    <View style={[styles.container, { minWidth: width }]}>
         <BottomSheet
           enablePanDownToClose = {true}
           ref={bottomSheetRef}
           snapPoints={snapPoints}
-          simultaneousHandlers={mapRef}
           onChange={handleSheetChanges}
           backdropComponent={renderBackdropComponent}
         >
           <BottomSheetView style={styles.contentContainer}>
-            <Text>Awesome 🎉</Text>
+            <RoutesList />
           </BottomSheetView>
         </BottomSheet>
-    </View>
-
   );
+};
+
+
+const mapDispatchToProps = {
+  setTourType,
 };
 
 const styles = StyleSheet.create({
@@ -61,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TourRoutesSheet;
+export default connect(null, mapDispatchToProps)(TourRoutesSheet);

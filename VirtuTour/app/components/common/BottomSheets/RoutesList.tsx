@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import styles from './BottomSheet.style.js';
+import styles from './RoutesList.style.js';
 import RouteDetails from './RouteDetails';
 import RoutesAndToggle from './RoutesAndToggle';
 
@@ -18,7 +18,6 @@ const CustomBottomSheetContent = () => {
 
   return (
     <View>
-      <View style={styles.line} />
       {selectedRoute ? (
         <RouteDetails selectedRoute={selectedRoute} clearSelectedRoute={clearSelectedRoute} />
       ) : (
