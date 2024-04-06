@@ -2,17 +2,21 @@ import { StyleSheet, View, TouchableOpacity, Text  } from 'react-native';
 import { useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from "expo-router";
-import Map from './components/map/map.js'
+import Map from './components/map/Map'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { setTourType } from './context/actions/buttonActions.js';
+import { setContentType } from './context/actions/bottomSheetActions.js';
 import {connect} from 'react-redux';
-import { FREE_ROAM_TOUR_TYPE, GUIDE_TOUR_TYPE } from './context/constants.js';
+import { FREE_ROAM_TOUR_TYPE, GUIDE_TOUR_TYPE, BOTTOM_SHEET_TOUR_LIST } from './context/constants.js';
 import TourRoutesSheet from './components/common/BottomSheets/TourRoutesSheet';
 
-const Home = ({tourType, setTourType}) => {
+const Home = ({tourType, setTourType, setContentType}) => {
   const setTourOption = (tourOption) => {
     setTourType({
       tourOption,
+    })
+    setContentType({
+      contentType: BOTTOM_SHEET_TOUR_LIST,
     })
   };
 
@@ -45,11 +49,12 @@ const Home = ({tourType, setTourType}) => {
 }
 
 const mapStateToProps = (state) =>{
-  return { tourType: state.tourTypeSelector.tourType }
+  return { tourType: state.button.tourType }
 }
 
 const mapDispatchToProps = {
   setTourType,
+  setContentType,
 };
 
 const styles = StyleSheet.create({
@@ -65,8 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
-    paddingHorizontal: 60,
+    width: '85%',
   },
 
   button: {

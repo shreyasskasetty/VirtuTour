@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux';
-import routeReducer from './routeReducer';
+import mapReducer from './mapReducer';
 import buttonReducer from './buttonReducer';
-
+import bottomSheetReducer from './bottomSheetReducer';
 const rootReducer = combineReducers({
-    routeSelector: routeReducer,
-    tourTypeSelector: buttonReducer,
+    map: mapReducer,
+    bottomSheet: bottomSheetReducer,
+    button: buttonReducer,
 })
 
 export default rootReducer;

@@ -3,31 +3,48 @@ import RouteCard from './RouteCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
 import routes from '../../constants/map/routes.js'
+import { connect } from 'react-redux';
+import { setRoute, setWayPoints } from '../../context/actions/mapActions';
+import { setContentType } from '../../context/actions/bottomSheetActions';
+import { BOTTOM_SHEET_TOUR_PREVIEW } from '../../context/constants';
+import { getWayPoints } from '../../utility/map-helper';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('screen')
-
-const Routes = ({ selectedOption, onRouteSelect }) => {
+const edgePaddingValue = 70
+const edgePadding = {
+    top: edgePaddingValue,
+    bottom: edgePaddingValue, 
+    right: edgePaddingValue, 
+    left: edgePaddingValue
+}
+const Routes = ({ selectedOption, mapRef, bottomSheetRef, setRoute, setWayPoints, setContentType}) => {
     const recommendedLocations = []
-    /*NOTE: change locations to routes. Add a new file in map called routes and create different routes*/
 
     // Function to handle route selection
     const handleRouteSelect = (route) => {
-        // Invoke the callback function to pass the name of selected route to the parent
-        onRouteSelect(route);
+        setRoute({route});
+        const wayPoints = getWayPoints(route);
+        setWayPoints(wayPoints);
+        setContentType({
+            contentType: BOTTOM_SHEET_TOUR_PREVIEW
+        });
+        
+        // mapRef.current?.fitToCoordinates(wayPoints,{edgePadding})
+        bottomSheetRef.current?.snapToIndex(0);
     };
 
-    const places = selectedOption === 0? routes : recommendedLocations;
+    const routeList = selectedOption === 0? routes : recommendedLocations;
     return(
         <View>
             <View style={styles.line}/>
             <ScrollView style={styles.scrollview}>
             {
-                places.length === 0?(
+                routeList.length === 0?(
                     <Text style={{alignSelf:'center'}}>
                         No Recommended Routes
                     </Text>
-                    ):places.map(route => (
-                    <TouchableOpacity key={route.source.name} onPress={() => handleRouteSelect(route)}>
+                    ):routeList.map((route, index) => (
+                    <TouchableOpacity key={index} onPress={() => handleRouteSelect(route)}>
                     {/* <TouchableOpacity key={route.source.name}> */}
                         <RouteCard
                             key={route.source.name}
@@ -61,4 +78,15 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Routes;
+const mapDispatchToProps = {
+    setRoute,
+    setContentType,
+    setWayPoints
+}
+
+const mapStateToProps = (state)=>{
+    return {
+        mapRef : state.map.mapRef
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);
