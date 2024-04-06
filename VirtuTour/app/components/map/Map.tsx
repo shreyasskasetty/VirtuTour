@@ -1,36 +1,36 @@
 import MapView,{Polyline, PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import {View,StyleSheet, Dimensions} from 'react-native';
-import { locationPermission, getCurrentLocation, getAllRoutePoints} from '../../utility/map-helper';
+import { locationPermission, getCurrentLocation, getWayPoints} from '../../utility/map-helper';
 import { useEffect, useState } from 'react';
+import { Icon } from 'react-native-elements'
 import {getCenterLocation} from '../../utility/helper.js'
 import {locations} from '../../constants/map/places.js'; 
 import Narration from '../audio/audio.js';
+import {connect} from 'react-redux';
+import MapViewDirections from 'react-native-maps-directions';
+import { initMapRef, setCurrentLocation } from '../../context/actions/mapActions';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
 const LATITUDE_DELTA = 0.09;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const Map = ({mapRef}) => {
+const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentLocation}) => {
     const [state, setState] = useState({
-      currentLocation: {
-        latitude: 30.5921396,
-        longitude: -96.3414484,
-      },
       routePoints: [],
-      centerLocation: {latitude: 0, longitude: 0},
     })
     
-    const { currentLocation} = state
-    const updateState = (data) => setState((state) => ({ ...state, ...data }));
 
     const zoomInOnMapReady = () => {
+      console.log('Map is ready. Zooming in...')
+      initMapRef({mapRef});
       const zoomRegion = {
-        ...state.centerLocation,
+        ...currentLocation,
         latitudeDelta: 0.008, // Smaller delta values for a closer zoom
         longitudeDelta: 0.009,
       };
-      mapRef.current.animateToRegion(zoomRegion, 2000); // 2000 ms for smoother transition
+      const location_list = locations.map((place)=>{return {latitude:place.latitude, longitude:place.longitude}})
+      mapRef.current?.fitToCoordinates(location_list,{edgePadding: {top: 70, right: 70, bottom: 70, left: 70},animated: true}); // 2000 ms for smoother transition
     };
 
     const getLiveLocation = async () => {
@@ -38,36 +38,30 @@ const Map = ({mapRef}) => {
         if(locationPermissionStatus){
           // ToDo : Handle case for reject
           const {latitude, longitude} = await getCurrentLocation();
-          updateState({
+          setCurrentLocation({
               currentLocation: { latitude: latitude, longitude: longitude },
           })
         }
         
       }
     
+      const goToMyLocation = () => {
+          const { latitude, longitude } = currentLocation;
+          mapRef.current.animateToRegion({
+            latitude,
+            longitude,
+            latitudeDelta: 0.01, // Adjust as needed
+            longitudeDelta: 0.01, // Adjust as needed
+          }, 500); // 1500 milliseconds for the animation
+      }
+
       useEffect(() => {
         const interval = setInterval(() => {
            getLiveLocation();
         }, 2000);
         return () => clearInterval(interval)
       }, [])
-
-      useEffect(() => {
-        // Define an async function inside the useEffect hook
-        const fetchRoutePoints = async () => {
-          const routePoints = await getAllRoutePoints();
-          if (routePoints) {
-            setState(prevState => ({
-              ...prevState,
-              routePoints: routePoints[3].coords
-            }));
-          }
-        };
       
-        // Call the async function
-        fetchRoutePoints();
-      }, []); 
-
       useEffect(()=> {
         const centerLocation = getCenterLocation(locations);
         setState(prevState => ({
@@ -78,26 +72,42 @@ const Map = ({mapRef}) => {
   
     return (
         <View style={styles.container}>
-            <Narration currentLocation={state.currentLocation}/>
+            <View style={styles.iconContainer}>
+              <Icon name={"my-location"} raised type='material' onPress={goToMyLocation}/>
+            </View>
+            <Narration currentLocation={currentLocation}/>
             <MapView
                 provider= {PROVIDER_GOOGLE}
                 ref={mapRef}
                 style={StyleSheet.absoluteFill}
                 initialRegion={{
-                    ...state.centerLocation,
+                    ...currentLocation,
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA,
                 }}
+                showsUserLocation
                 onMapReady={zoomInOnMapReady}
+                
             >
-            <Polyline
-              coordinates={[
-                ...state.routePoints
-              ]}
-             
-              strokeColor="blue" // fallback for when `strokeColors` is not supported by the map-provider
-              strokeWidth={6}
-            />
+            {
+              route && wayPoints &&
+              (
+                <MapViewDirections
+                  origin={{latitude:route.source.latitude, longitude:route.source.longitude}}
+                  destination={{latitude:route.destination.latitude, longitude:route.destination.longitude}}
+                  apikey={process.env.EXPO_PUBLIC_GOOGLE_API_KEY}
+                  strokeColor='#1B6EF3'
+                  strokeWidth={5}
+                  waypoints={wayPoints}
+                  splitWaypoints={true}
+                  precision={"high"}
+                  mode={"WALKING"}
+                >
+                  
+                </MapViewDirections>
+              )
+            }
+
             {
               locations.map((location, index) => {
                   //console.log(index,location.name,location.latitude,location.longitude)
@@ -111,19 +121,21 @@ const Map = ({mapRef}) => {
                   );
               })
             }
-
-            <Marker
-                coordinate={currentLocation}
-                title={"title"}
-                pinColor = {"purple"}
-                description={"description"}
-            />
             </MapView>
         </View>
     )
 }
 
   const styles = StyleSheet.create({
+    iconContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      padding: 10,
+      zIndex: 1,
+      position:"absolute",
+      top:100,
+      right: 5,
+    },
     container: {
       ...StyleSheet.absoluteFillObject,
       justifyContent: 'flex-end',
@@ -134,4 +146,17 @@ const Map = ({mapRef}) => {
     }
   });
 
-export default Map;
+const mapStateToProps = (state)=>{
+  return {
+      route: state.map.routeObj,
+      wayPoints: state.map.wayPoints,
+      currentLocation: state.map.currentLocation,
+  }   
+}
+const mapDispatchToProps = {
+    initMapRef, 
+    setCurrentLocation
+};
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Map);

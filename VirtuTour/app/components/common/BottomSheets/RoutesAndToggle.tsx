@@ -1,25 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text } from 'react-native';
 import Routes from '../../routes/Routes';
 import Toggle from '../../routes/Toggle';
 import styles from './RoutesList.style.js';
 
-interface RoutesAndToggleProps {
-  selectedOption: number;
-  setSelectedOption: (option: number) => void;
-  onRouteSelect: (route: any) => void;
-}
-
-const RoutesAndToggle: React.FC<RoutesAndToggleProps> = ({
-  selectedOption,
-  setSelectedOption,
-  onRouteSelect,
-}) => {
+const RoutesAndToggle = ({bottomSheetRef}) => {
+  const [selectedOption, setSelectedOption] = useState(0);
   return (
     <>
       <Text style={styles.bottomSheetHeading}>Routes</Text>
       <Toggle selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-      <Routes selectedOption={selectedOption} onRouteSelect={onRouteSelect} />
+      <Routes bottomSheetRef = {bottomSheetRef} selectedOption={selectedOption} />
     </>
   );
 };
