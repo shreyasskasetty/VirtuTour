@@ -22,7 +22,6 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
     
 
     const zoomInOnMapReady = () => {
-      console.log('Map is ready. Zooming in...')
       initMapRef({mapRef});
       const zoomRegion = {
         ...currentLocation,
@@ -69,7 +68,7 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
           centerLocation: centerLocation
         }))
       },[]);
-  
+    
     return (
         <View style={styles.container}>
             <View style={styles.iconContainer}>
@@ -85,7 +84,9 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA,
                 }}
+                
                 showsUserLocation
+                showsCompass
                 onMapReady={zoomInOnMapReady}
                 
             >
@@ -93,7 +94,7 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
               route && wayPoints &&
               (
                 <MapViewDirections
-                  origin={{latitude:route.source.latitude, longitude:route.source.longitude}}
+                  origin={currentLocation}
                   destination={{latitude:route.destination.latitude, longitude:route.destination.longitude}}
                   apikey={process.env.EXPO_PUBLIC_GOOGLE_API_KEY}
                   strokeColor='#1B6EF3'
@@ -102,15 +103,25 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
                   splitWaypoints={true}
                   precision={"high"}
                   mode={"WALKING"}
+                  resetOnChange={false}
+                  optimizeWaypoints={true}
                 >
-                  
                 </MapViewDirections>
               )
             }
-
             {
               locations.map((location, index) => {
-                  //console.log(index,location.name,location.latitude,location.longitude)
+
+                  if(route && (route.source.name === location.name || route.destination.name === location.name)){
+                    return (
+                      <Marker
+                      key={`${index}`} 
+                      coordinate={{ latitude: location.latitude, longitude: location.longitude }}
+                      title={location.name}
+                      pinColor={route.colorIndicator}
+                      />
+                    )
+                  }
                   return (
                     <Marker
                       key={`${index}`} 
@@ -133,7 +144,7 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
       padding: 10,
       zIndex: 1,
       position:"absolute",
-      top:100,
+      top:200,
       right: 5,
     },
     container: {

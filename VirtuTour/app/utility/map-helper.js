@@ -38,7 +38,7 @@ export const getWayPoints = (route) => {
         console.log("No valid route")
         return;
     }
-    const wayPoints = route.route.map(place => `${place.latitude},${place.longitude}`);
+    const wayPoints = route.route.map(place => ({latitude: place.latitude,longitude: place.longitude}));
     return wayPoints;
 };
 
