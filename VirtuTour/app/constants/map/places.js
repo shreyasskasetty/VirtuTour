@@ -93,8 +93,8 @@ const locations = [SterlingCEvansLibrary,
     SimpsonDrillField,
     ZachryBuilding,
     HaynesEngineeringBuilding,
-    FoxRunBasketBallCourt,
-    London2311
+    // FoxRunBasketBallCourt,
+    // London2311
     ]
 
 export {

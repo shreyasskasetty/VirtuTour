@@ -9,7 +9,7 @@ import TourPreviewContent from './TourPreviewContent';
 import RoutesAndToggle from './RoutesAndToggle';
 import { setContentType } from '../../../context/actions/bottomSheetActions';
 
-const TourRoutesSheet = ({setTourType, setRoute, route,setContentType, content}) => {
+const TourRoutesSheet = ({setTourType, mapRef, wayPoints, setRoute, route,setContentType, content}) => {
 
   const { width } = useWindowDimensions();
   const bottomSheetRef = useRef(null);
@@ -20,7 +20,6 @@ const TourRoutesSheet = ({setTourType, setRoute, route,setContentType, content})
     if(index === -1){
       switch(content){
         case BOTTOM_SHEET_TOUR_PREVIEW: 
-            console.log("Leaving Bottom Sheet Tour Preview...")
             setContentType({
               contentType: 0
             });
@@ -28,7 +27,6 @@ const TourRoutesSheet = ({setTourType, setRoute, route,setContentType, content})
             setRoute({route: null});
             break;
           case BOTTOM_SHEET_TOUR_LIST: 
-            console.log("Leaving Bottom Sheet List...")
             setContentType({
               contentType: null
             });
@@ -39,6 +37,24 @@ const TourRoutesSheet = ({setTourType, setRoute, route,setContentType, content})
           setRoute({route: null});
           setTourType({tourOption: null});
       }
+    }
+
+    if(index > 0 && content == BOTTOM_SHEET_TOUR_PREVIEW){
+      console.log("Changing Zoom...")
+      console.log(wayPoints)
+      mapRef.current?.fitToCoordinates(wayPoints, {
+        edgePadding: { top: 100, right: 100, bottom: 100, left: 100 }, // Adjust padding as needed
+        animated: true, // Set to false if you do not want the map to animate zooming
+      });
+    }
+    if(index == 0 && content ==  BOTTOM_SHEET_TOUR_PREVIEW){
+        const region = {
+            latitude: route.source.latitude,
+            longitude: route.source.longitude,
+            latitudeDelta: 0.004, 
+            longitudeDelta: 0.004
+        }
+        mapRef.current?.animateToRegion(region, 1000)
     }
     console.log('handleSheetChanges', index);
   }, [content]);
@@ -80,7 +96,9 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state)=>({
   content: state.bottomSheet.contentType,
-  route: state.map.routeObj
+  route: state.map.routeObj,
+  mapRef: state.map.mapRef,
+  wayPoints: state.map.wayPoints,
 })
 
 const styles = StyleSheet.create({

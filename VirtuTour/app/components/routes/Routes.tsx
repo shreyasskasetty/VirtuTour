@@ -28,8 +28,13 @@ const Routes = ({ selectedOption, mapRef, bottomSheetRef, setRoute, setWayPoints
         setContentType({
             contentType: BOTTOM_SHEET_TOUR_PREVIEW
         });
-        
-        // mapRef.current?.fitToCoordinates(wayPoints,{edgePadding})
+        const region = {
+            latitude: route.source.latitude,
+            longitude: route.source.longitude,
+            latitudeDelta: 0.004, 
+            longitudeDelta: 0.004
+        }
+        mapRef.current?.animateToRegion(region, 1000)
         bottomSheetRef.current?.snapToIndex(0);
     };
 
