@@ -23,8 +23,6 @@ const {
 const Narration = ({currentLocation}) => {
 
     const [currentMode, setCurrentMode] = useState(false)
-    // const [soundMap, setSoundMap] = useState({});
-    // const soundMap = useRef({})
     const [trackMap, setTrackMap] = useState({}) 
     const [justFinished, setJustFinished] = useState(false)
     const trackProgress = useRef({})
@@ -62,7 +60,6 @@ const Narration = ({currentLocation}) => {
     }
 
     function unloadCurrentAudio() {
-        //const tracks  = soundMap.current
         const tracks  = trackMap        
         for (trackId in tracks)
         {
@@ -72,7 +69,6 @@ const Narration = ({currentLocation}) => {
     }
 
     function loadBackAudio() {
-        // const tracks  = soundMap.current
         const tracks  = trackMap
 
         for (trackId in tracks)
@@ -127,7 +123,6 @@ const Narration = ({currentLocation}) => {
 
         tracks = AudioLocationService(currentLocation, locations);
         let isUpdated = false
-        //updatedSoundMap = {...soundMap.current}
         updatedSoundMap = {...trackMap}
         tracks_to_remove = []
 
@@ -150,7 +145,11 @@ const Narration = ({currentLocation}) => {
             }
         }
 
-        isUpdated = tracks_to_remove.length !== 0;
+        if(tracks_to_remove.length !== 0)
+        {
+            console.log("Marking isUpdated to remove tracks")
+            isUpdated = true;
+        }
 
         tracks_to_remove.forEach(element => {
             delete updatedSoundMap[element];
@@ -166,7 +165,9 @@ const Narration = ({currentLocation}) => {
             else if(track.volume > 0){
                 console.log("New Track is added");
                 console.log(track)
-                options = {}
+                options = {
+                    shouldPlay : false
+                }
 
                 if(trackProgress.current[track.trackId])
                 {
@@ -187,25 +188,28 @@ const Narration = ({currentLocation}) => {
 
         if(isUpdated)
         {
+            // console.log("Tracks to remove")
+            // console.log(tracks_to_remove)
             console.log("Updating the sound map");
-            //soundMap.current = updatedSoundMap
-            //console.log(soundMap.current)
-            setTrackMap((prevState)=>{
-                // console.log("Newly Added Tracks")
-                // console.log(newlyAddedTracks)
-                // console.log("prevstate : ")
-                // console.log(prevState)
-                // console.log("updated state : " )
-                // console.log(updatedSoundMap)
-
-                for(const key of newlyAddedTracks)
-                {
-                    if(prevState[key])
-                        unloadAudio(prevState[key])
-                }
-
-                return updatedSoundMap;
-            })
+            if(newlyAddedTracks.length !== 0 || tracks_to_remove.length !== 0)
+            {
+                setTrackMap((prevState)=>{
+                    // console.log("Newly Added Tracks")
+                    // console.log(newlyAddedTracks)
+                    // console.log("prevstate : ")
+                    // console.log(prevState)
+                    for(const key of newlyAddedTracks)
+                    {
+                        if(prevState[key])
+                        {
+                            unloadAudio(prevState[key])
+                        }
+                    }
+                    // console.log("updated state : " )
+                    // console.log(updatedSoundMap)
+                    return updatedSoundMap;
+                })
+            }
         }
     }
 
@@ -216,7 +220,8 @@ const Narration = ({currentLocation}) => {
         }else {
             loadBackAudio()
         }
-    }, [currentMode])
+    }, [currentMode, trackMap])
+    
 
     mapAudioToLocation(currentLocation);
 
