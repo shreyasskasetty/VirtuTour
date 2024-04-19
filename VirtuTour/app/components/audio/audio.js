@@ -1,14 +1,14 @@
-import { Audio } from 'expo-av';
+
 import { Asset } from 'expo-asset';
 import { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet,Button } from 'react-native';
 import {locations} from '../../constants/map/places'
-import { getDistance } from 'geolib';
 import AudioControls from './audioControl'
 import AudioLocationService from './AudioLocationService';
 import { Icon } from 'react-native-elements'
 import { PLAY_POSITION_TOP } from '../../constants/data/data';
-
+import { setCurrentPlace } from '../../context/actions/mapActions';
+import {connect} from 'react-redux';
 
 const {
     unloadAudio,
