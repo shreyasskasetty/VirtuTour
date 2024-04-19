@@ -36,12 +36,18 @@ const getDistanceMap = (currentLocation, routes) => {
     return distance_map
 }
 
-const AudioLocationService = (currentLocation, routes) => {
+export const getClosestLocation = (currentLocation, routes) =>{
     close_locations = routes
     close_locations = close_locations.filter((route) => {
         const distance = getDistance(currentLocation, route)
         return distance < proximity_limit
     });
+
+    return close_locations
+}
+
+const AudioLocationService = (currentLocation, routes) => {
+    close_locations = getClosestLocation(currentLocation, routes)
 
     currentTracks = []
     if (close_locations.length !== 0)

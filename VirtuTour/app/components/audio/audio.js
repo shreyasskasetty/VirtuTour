@@ -1,14 +1,12 @@
-import { Audio } from 'expo-av';
+
 import { Asset } from 'expo-asset';
 import { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet,Button } from 'react-native';
 import {locations} from '../../constants/map/places'
-import { getDistance } from 'geolib';
 import AudioControls from './audioControl'
 import AudioLocationService from './AudioLocationService';
 import { Icon } from 'react-native-elements'
 import { PLAY_POSITION_TOP } from '../../constants/data/data';
-
 
 const {
     unloadAudio,
@@ -120,34 +118,6 @@ const Narration = ({currentLocation, currentPlace, setCurrentPlace}) => {
         }
 
         await handleAudioState(audioSource, updatedInfo.playState)
-
-    }
-
-    function updateReduxCurrentPlace (tracks){
-        if(tracks.length == 0)
-        {
-            if(currentPlace !== null)
-            {
-                setCurrentPlace(null)
-            }
-            return
-        }
-        
-        const firstTrack = tracks[0]
-        if(firstTrack.trackId === "Background Music")
-        {
-            return;
-        }
-
-        if(currentPlace == null)
-        {
-            setCurrentPlace(firstTrack)
-        }else{
-            if(currentPlace.trackId !== firstTrack.trackId)
-            {
-                setCurrentPlace(firstTrack)
-            }
-        }
     }
 
     const mapAudioToLocation = async (currentLocation) =>
@@ -156,7 +126,6 @@ const Narration = ({currentLocation, currentPlace, setCurrentPlace}) => {
             return
 
         tracks = AudioLocationService(currentLocation, locations);
-        updateReduxCurrentPlace(tracks)
         let isUpdated = false
         //updatedSoundMap = {...soundMap.current}
         updatedSoundMap = {...trackMap}
@@ -278,13 +247,4 @@ const styles = StyleSheet.create({
     },
   });
 
-const mapStateToProps = (state)=>{
-return {
-    currentPlace: state.map.currentPlace,
-}   
-}
-const mapDispatchToProps = {
-    setCurrentPlace
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(Narration);
+export default Narration;
