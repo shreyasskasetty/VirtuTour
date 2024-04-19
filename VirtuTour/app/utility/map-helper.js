@@ -1,7 +1,5 @@
 // import {showMessage} from 'react-native-flash-message'
 import * as Location from 'expo-location'
-import routes from '../constants/map/routes'; 
-import { longitudeKeys } from 'geolib';
 
 export const getCurrentLocation = () => new Promise(async (resolve, reject)=>{
     serviceEnabled = await Location.hasServicesEnabledAsync()
