@@ -1,7 +1,6 @@
 import { Audio } from 'expo-av';
 
 const AudioControls = () => {
-
     const getStatus = async (source)=> {
         if(source)
         {
@@ -16,7 +15,6 @@ const AudioControls = () => {
             await source.setPositionAsync(position)
         }
     }
-
 
     const handleAudioState = async (source, playState) => {
         if(playState)
@@ -41,29 +39,27 @@ const AudioControls = () => {
         }
     }
 
-    const getSoundSource = async (sourceUrl, volume = 1 , options = {} ,shouldPlay=true) => {
+    const getSoundSource = async (sourceUrl, volume = 1 , options = {}) => {
         const {sound } = await Audio.Sound.createAsync({uri: sourceUrl, overrideFileExtensionAndroid: "mp3"}, {
-            shouldPlay: shouldPlay,
             volume:volume,
             ...options
         })
         return sound
     }
 
-    const getSoundSourceFromLocalSource = async (sourceUrl, volume = 1 , options = {} ,shouldPlay=true) => {
+    const getSoundSourceFromLocalSource = async (sourceUrl, volume = 1 , options = {}) => {
         const {sound } = await Audio.Sound.createAsync(sourceUrl, {
-            shouldPlay: shouldPlay,
             volume:volume,
             ...options
         })
         return sound
     }
+
     const pauseAudio = async (source) => {
         const status = await getStatus(source)
 
         if(status.isPlaying)
         {
-            console.log("Pausing")
             await source.pauseAsync()
         }
     }
@@ -91,7 +87,9 @@ const AudioControls = () => {
 
     const unloadAudio = async (source) => {
         if (source)
+        {
             await source.unloadAsync()
+        }
     }
 
     return {
