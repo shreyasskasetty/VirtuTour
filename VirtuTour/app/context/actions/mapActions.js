@@ -17,3 +17,8 @@ export const setCurrentLocation = ({currentLocation}) => ({
     type: "SET_CURRENT_LOCATION",
     currentLocation
 })
+
+export const setCurrentPlace = ({currentPlace}) => ({
+    type : "SET_CURRENT_PLACE",
+    currentPlace
+})
