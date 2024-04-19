@@ -2,6 +2,7 @@ const initialState = {
     routeObj: null,
     wayPoints: [],
     mapRef : null,
+    navigation: false,
     currentLocation: {
         latitude: 30.5921396,
         longitude: -96.3414484,
@@ -40,6 +41,12 @@ const mapReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 currentPlace : action.currentPlace
+            }
+        case 'START_NAVIGATION':
+            console.log("Action Type: "+action.type, " navigation: "+ action.navigation)
+            return {
+                ...state,
+                navigation: action.navigation
             }
         default:
             return state;

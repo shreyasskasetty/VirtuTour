@@ -1,5 +1,5 @@
-// import {showMessage} from 'react-native-flash-message'
 import * as Location from 'expo-location'
+import { getDistance } from 'geolib';
 
 export const getCurrentLocation = () => new Promise(async (resolve, reject)=>{
     serviceEnabled = await Location.hasServicesEnabledAsync()
@@ -40,6 +40,16 @@ export const getWayPoints = (route) => {
     return wayPoints;
 };
 
+export const getClosestLocation = (currentLocation, routes) =>{
+    const proximity_limit = 25
+    close_locations = routes
+    close_locations = close_locations.filter((route) => {
+        const distance = getDistance(currentLocation, route)
+        return distance < proximity_limit
+    });
+
+    return close_locations
+}
 
 // Updating getPathPoints function to be async and use await
 // export const getPathPoints = async (mode, origin, destination) => {

@@ -20,7 +20,7 @@ const {
     setPosition
 } = AudioControls()
 
-const Narration = ({currentLocation, currentPlace, setCurrentPlace}) => {
+const Narration = ({currentLocation}) => {
 
     const [currentMode, setCurrentMode] = useState(false)
     // const [soundMap, setSoundMap] = useState({});
