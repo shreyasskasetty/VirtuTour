@@ -7,19 +7,30 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { setTourType } from './context/actions/buttonActions.js';
 import { setContentType } from './context/actions/bottomSheetActions.js';
 import {connect} from 'react-redux';
-import { FREE_ROAM_TOUR_TYPE, GUIDE_TOUR_TYPE, BOTTOM_SHEET_TOUR_LIST } from './context/constants.js';
+import { FREE_ROAM_TOUR_TYPE, GUIDE_TOUR_TYPE, BOTTOM_SHEET_TOUR_LIST, BOTTOM_SHEET_PLACE_DETAIL } from './context/constants.js';
 import TourRoutesSheet from './components/common/BottomSheets/TourRoutesSheet';
+import { startNavigation } from './context/actions/mapActions';
 
-const Home = ({tourType, setTourType, setContentType}) => {
-  const setTourOption = (tourOption) => {
+const Home = ({tourType, setTourType, setContentType, startNavigation, navigation}) => {
+
+  const handleRoamButtonPress = () => {
+    startNavigation(true);
     setTourType({
-      tourOption,
+      tourOption: FREE_ROAM_TOUR_TYPE
+    });
+    setContentType({
+      contentType: BOTTOM_SHEET_PLACE_DETAIL,
+    })
+  };
+
+  const handleGuideButtonPress = () => {
+    setTourType({
+      tourOption: GUIDE_TOUR_TYPE
     })
     setContentType({
       contentType: BOTTOM_SHEET_TOUR_LIST,
     })
-  };
-
+  }
   const mapRef = useRef();
 
   return (
@@ -33,15 +44,19 @@ const Home = ({tourType, setTourType, setContentType}) => {
             }}
           />
           <Map mapRef={mapRef}/>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={()=> setTourOption(GUIDE_TOUR_TYPE)}>
-              <Text style={styles.buttonText}>Guide</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={()=> setTourOption(FREE_ROAM_TOUR_TYPE)}>
-              <Text style={styles.buttonText}>Roam</Text>
-            </TouchableOpacity>
-          </View>
-            {tourType == GUIDE_TOUR_TYPE && <TourRoutesSheet />}
+            {!navigation && <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={()=> {handleGuideButtonPress()}}>
+                  <Text style={styles.buttonText}>Guide</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} 
+                    onPress={()=> {
+                      handleRoamButtonPress()
+                }}>
+                <Text style={styles.buttonText}>Roam</Text>
+                </TouchableOpacity>
+              </View>
+              }
+            {(tourType == GUIDE_TOUR_TYPE || tourType == FREE_ROAM_TOUR_TYPE )&& <TourRoutesSheet />}
           {/* {bottomSheetVisible && <BottomSheet />} */}
         </SafeAreaView>
       </GestureHandlerRootView>
@@ -49,12 +64,15 @@ const Home = ({tourType, setTourType, setContentType}) => {
 }
 
 const mapStateToProps = (state) =>{
-  return { tourType: state.button.tourType }
+  return { tourType: state.button.tourType,
+           navigation: state.map.navigation 
+          }
 }
 
 const mapDispatchToProps = {
   setTourType,
   setContentType,
+  startNavigation,
 };
 
 const styles = StyleSheet.create({

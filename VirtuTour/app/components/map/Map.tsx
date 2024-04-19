@@ -1,6 +1,6 @@
 import MapView,{Polyline, PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import {View,StyleSheet, Dimensions} from 'react-native';
-import { locationPermission, getCurrentLocation, getWayPoints} from '../../utility/map-helper';
+import { locationPermission, getCurrentLocation, getWayPoints, getClosestLocation} from '../../utility/map-helper';
 import { useEffect, useState } from 'react';
 import { Icon } from 'react-native-elements'
 import {getCenterLocation} from '../../utility/helper.js'
@@ -8,26 +8,64 @@ import {locations} from '../../constants/map/places.js';
 import Narration from '../audio/audio.js';
 import {connect} from 'react-redux';
 import MapViewDirections from 'react-native-maps-directions';
-import { initMapRef, setCurrentLocation } from '../../context/actions/mapActions';
+import { initMapRef, setCurrentLocation, setCurrentPlace } from '../../context/actions/mapActions';
+import { FREE_ROAM_TOUR_TYPE, GUIDE_TOUR_TYPE } from '../../context/constants';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
 const LATITUDE_DELTA = 0.09;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentLocation}) => {
+const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, currentLocation, setCurrentPlace, setCurrentLocation}) => {
     const [state, setState] = useState({
       routePoints: [],
     })
     
+    useEffect(() => {
+      const interval = setInterval(() => {
+         getLiveLocation();
+      }, 2000);
+      return () => clearInterval(interval)
+    }, [])
+    
+    useEffect(()=> {
+      const centerLocation = getCenterLocation(locations);
+      setState(prevState => ({
+        ...prevState,
+        centerLocation: centerLocation
+      }));
+    },[]);
+  
+
+      useEffect(()=>{
+        switch(tourType){
+          case GUIDE_TOUR_TYPE:
+            if(navigation && route && currentLocation){
+              const currentPlace = getClosestLocation(currentLocation,route.route);
+              if(currentPlace.length == 0){
+                setCurrentPlace({currentPlace: null});
+              }else{
+                setCurrentPlace({currentPlace: currentPlace[0]});
+              }
+            }
+            break;
+          case FREE_ROAM_TOUR_TYPE:
+            if(navigation && locations && currentLocation){
+              const currentPlace = getClosestLocation(currentLocation,locations);
+              setCurrentPlace({currentPlace: currentPlace[0]});
+            }
+        }
+      
+      },[currentLocation])
+
 
     const zoomInOnMapReady = () => {
       initMapRef({mapRef});
-      const zoomRegion = {
-        ...currentLocation,
-        latitudeDelta: 0.008, // Smaller delta values for a closer zoom
-        longitudeDelta: 0.009,
-      };
+      // const zoomRegion = {
+      //   ...currentLocation,
+      //   latitudeDelta: 0.008, // Smaller delta values for a closer zoom
+      //   longitudeDelta: 0.009,
+      // };
       const location_list = locations.map((place)=>{return {latitude:place.latitude, longitude:place.longitude}})
       mapRef.current?.fitToCoordinates(location_list,{edgePadding: {top: 70, right: 70, bottom: 70, left: 70},animated: true}); // 2000 ms for smoother transition
     };
@@ -43,7 +81,7 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
         }
         
       }
-    
+      
       const goToMyLocation = () => {
           const { latitude, longitude } = currentLocation;
           mapRef.current.animateToRegion({
@@ -53,28 +91,13 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
             longitudeDelta: 0.01, // Adjust as needed
           }, 500); // 1500 milliseconds for the animation
       }
-
-      useEffect(() => {
-        const interval = setInterval(() => {
-           getLiveLocation();
-        }, 2000);
-        return () => clearInterval(interval)
-      }, [])
       
-      useEffect(()=> {
-        const centerLocation = getCenterLocation(locations);
-        setState(prevState => ({
-          ...prevState,
-          centerLocation: centerLocation
-        }))
-      },[]);
-    
     return (
         <View style={styles.container}>
             <View style={styles.iconContainer}>
               <Icon name={"my-location"} raised type='material' onPress={goToMyLocation}/>
             </View>
-            <Narration currentLocation={currentLocation}/>
+            {navigation && <Narration currentLocation={currentLocation}/>}
             <MapView
                 provider= {PROVIDER_GOOGLE}
                 ref={mapRef}
@@ -157,15 +180,18 @@ const Map = ({mapRef, initMapRef, route, wayPoints, currentLocation, setCurrentL
     }
   });
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state: any)=>{
   return {
       route: state.map.routeObj,
       wayPoints: state.map.wayPoints,
       currentLocation: state.map.currentLocation,
+      navigation: state.map.navigation,
+      tourType: state.button.tourType
   }   
 }
 const mapDispatchToProps = {
     initMapRef, 
+    setCurrentPlace,
     setCurrentLocation
 };
 

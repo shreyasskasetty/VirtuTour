@@ -4,38 +4,41 @@ import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from '@gorhom/botto
 import { setTourType } from '../../../context/actions/buttonActions';
 import { setRoute } from '../../../context/actions/mapActions';
 import {connect} from 'react-redux';
-import {BOTTOM_SHEET_TOUR_LIST, BOTTOM_SHEET_TOUR_PREVIEW, GUIDE_TOUR_TYPE } from '../../../context/constants';
+import {BOTTOM_SHEET_TOUR_LIST, BOTTOM_SHEET_TOUR_PREVIEW, GUIDE_TOUR_TYPE, BOTTOM_SHEET_PLACE_DETAIL } from '../../../context/constants';
 import TourPreviewContent from './TourPreviewContent';
 import RoutesAndToggle from './RoutesAndToggle';
 import { setContentType } from '../../../context/actions/bottomSheetActions';
+import PlaceDetails from './PlaceDetails';
 
-const TourRoutesSheet = ({setTourType, mapRef, wayPoints, setRoute, route,setContentType, content}) => {
+const TourRoutesSheet = ({setTourType,tourType, mapRef, wayPoints, navigation, currentPlace, setRoute, route,setContentType, content}) => {
 
   const { width } = useWindowDimensions();
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => ['25%','50%','70%'], []);
+  const snapPoints = useMemo(() => ['18%','50%','70%'], []);
   
   const handleSheetChanges = useCallback((index: number) => {
     const focused = index !== -1;
     if(index === -1){
-      switch(content){
-        case BOTTOM_SHEET_TOUR_PREVIEW: 
-            setContentType({
-              contentType: 0
-            });
-            bottomSheetRef.current?.snapToIndex(1)
+      if(tourType == GUIDE_TOUR_TYPE){
+        switch(content){
+          case BOTTOM_SHEET_TOUR_PREVIEW: 
+              setContentType({
+                contentType: 0
+              });
+              bottomSheetRef.current?.snapToIndex(1)
+              setRoute({route: null});
+              break;
+            case BOTTOM_SHEET_TOUR_LIST: 
+              setContentType({
+                contentType: null
+              });
+              setTourType({tourOption: null});
+              setRoute({route: null});
+              break;
+          default:
             setRoute({route: null});
-            break;
-          case BOTTOM_SHEET_TOUR_LIST: 
-            setContentType({
-              contentType: null
-            });
             setTourType({tourOption: null});
-            setRoute({route: null});
-            break;
-        default:
-          setRoute({route: null});
-          setTourType({tourOption: null});
+        }
       }
     }
 
@@ -69,9 +72,9 @@ const TourRoutesSheet = ({setTourType, mapRef, wayPoints, setRoute, route,setCon
 
   return (
         <BottomSheet
-          enablePanDownToClose = {true}
+          enablePanDownToClose = {!navigation}
           ref={bottomSheetRef}
-          index = {1}
+          index = {0}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
         >
@@ -81,6 +84,9 @@ const TourRoutesSheet = ({setTourType, mapRef, wayPoints, setRoute, route,setCon
               )}
               {content == BOTTOM_SHEET_TOUR_LIST &&(
                 <RoutesAndToggle bottomSheetRef = {bottomSheetRef}/>
+              )}
+              {content == BOTTOM_SHEET_PLACE_DETAIL && (
+                <PlaceDetails bottomSheetRef = {bottomSheetRef}/>
               )}
           </BottomSheetView>
         </BottomSheet>
@@ -94,11 +100,14 @@ const mapDispatchToProps = {
   setContentType
 };
 
-const mapStateToProps = (state)=>({
+const mapStateToProps = (state: any)=>({
   content: state.bottomSheet.contentType,
   route: state.map.routeObj,
   mapRef: state.map.mapRef,
+  currentPlace: state.map.currentPlace,
   wayPoints: state.map.wayPoints,
+  navigation: state.map.navigation,
+  tourType: state.button.tourType
 })
 
 const styles = StyleSheet.create({
