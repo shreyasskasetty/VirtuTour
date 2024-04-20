@@ -1,4 +1,12 @@
 import { getDistance } from 'geolib';
+import {locations} from '../../constants/map/places'
+import AudioControls from './audioControl'
+import { Asset } from 'expo-asset';
+
+const {
+    getSoundSource,
+    getSoundSourceFromLocalSource,
+} = AudioControls()
 
 const proximity_limit = 25
 
@@ -75,3 +83,38 @@ const AudioLocationService = (currentLocation, routes) => {
 }
 
 export default AudioLocationService;
+
+
+const background_track = 'https://sample-music.netlify.app/Hate%20Me.mp3'
+
+const createSoundSource = async (track, options) => {
+    let soundSource = getSoundSource;
+    if(track instanceof Asset)
+    {
+        soundSource = getSoundSourceFromLocalSource;
+    }
+    const sound = await soundSource(track, 1, options);
+    return sound
+}
+
+const initTrackStore =  async () => {
+    console.log("Init Track Store")
+    const map = {}
+    for (const place of locations)
+    {
+        options = {
+            shouldPlay : false
+        }
+        map[place.name] = await createSoundSource(place.track, options)
+    }
+
+    map["Background Music"] = await createSoundSource(background_track, {
+        shouldPlay : false
+    })
+
+    return map
+}
+
+const trackInit = initTrackStore().then(x => { return x });
+
+export { trackInit };

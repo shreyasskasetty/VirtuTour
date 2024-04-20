@@ -59,7 +59,6 @@ const TourRoutesSheet = ({setTourType,tourType, mapRef, wayPoints, navigation, c
         }
         mapRef.current?.animateToRegion(region, 1000)
     }
-    console.log('handleSheetChanges', index);
   }, [content]);
 
   // const renderBackdropComponent = useCallback(

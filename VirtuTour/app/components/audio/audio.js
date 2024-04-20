@@ -7,6 +7,8 @@ import AudioControls from './audioControl'
 import AudioLocationService from './AudioLocationService';
 import { Icon } from 'react-native-elements'
 import { PLAY_POSITION_TOP } from '../../constants/data/data';
+import { useStore } from 'react-redux';
+
 
 const {
     unloadAudio,
@@ -20,16 +22,56 @@ const {
     setPosition
 } = AudioControls()
 
+const background_track = 'https://sample-music.netlify.app/Hate%20Me.mp3'
+
+const createSoundSource = async (track, options) => {
+    let soundSource = getSoundSource;
+    if(place.track instanceof Asset)
+    {
+        soundSource = getSoundSourceFromLocalSource;
+    }
+    const sound = await soundSource(track, 1, options);
+}
+
+const initTrackStore =  async () => {
+    const map = {}
+    locations.forEach(async (place) =>  {
+        options = {
+            shouldPlay : false
+        }
+        map[place.name] = await createSoundSource(place.track, options)
+    })
+
+    map["Background Music"] = await createSoundSource(background_track, {
+        shouldPlay : false
+    })
+
+    return map
+}
 const Narration = ({currentLocation}) => {
 
-    const [currentMode, setCurrentMode] = useState(false)
+    const [currentMode, setCurrentMode] = useState(true)
     const [trackMap, setTrackMap] = useState({}) 
     const [justFinished, setJustFinished] = useState(false)
     const trackProgress = useRef({})
+    const trackStore = useRef({})
+    const navigation = useStore().getState().map.navigation
 
     function onPress(){
         console.log("Setting mode to Play: " + !currentMode)
         setCurrentMode(!currentMode)
+    }
+
+    async function loadTrackStore()
+    {
+        if(Object.keys(trackStore).length === 0)
+        {
+            const map = await initTrackStore()
+            for(const key in map)
+            {
+                trackStore[key] = map[key]
+            }
+        }
     }
 
     async function replayTrack()
@@ -85,7 +127,6 @@ const Narration = ({currentLocation}) => {
             trackProgress.current[trackId] = positionMillis;
         }
     }
-
 
     const updateExistingTrack = async (audioSource, updatedInfo) => {
         
@@ -222,8 +263,27 @@ const Narration = ({currentLocation}) => {
         }
     }, [currentMode, trackMap])
     
+    useEffect(()=>{
+        if(currentMode && !navigation)
+        {
+            console.log("Setting mode to Play: False")
+            unloadCurrentAudio()
+            setCurrentMode(false)
+        }
+        if(!currentMode && navigation)
+        {
+            loadTrackStore()
+            setCurrentMode(true)
+        }
+    },[navigation])
+
+    if(!navigation)
+    {
+        return (<></>)
+    }
 
     mapAudioToLocation(currentLocation);
+    
 
     return (
         <View style={styles.container}>
