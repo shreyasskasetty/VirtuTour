@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Icon } from 'react-native-elements'
 import {getCenterLocation} from '../../utility/helper.js'
 import {locations} from '../../constants/map/places.js'; 
-import Narration from '../audio/audio.js';
+import Narration from '../audio/audio2.js';
 import {connect} from 'react-redux';
 import MapViewDirections from 'react-native-maps-directions';
 import { initMapRef, setCurrentLocation, setCurrentPlace } from '../../context/actions/mapActions';
@@ -97,7 +97,7 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
             <View style={styles.iconContainer}>
               <Icon name={"my-location"} raised type='material' onPress={goToMyLocation}/>
             </View>
-            {navigation && <Narration currentLocation={currentLocation}/>}
+            <Narration currentLocation={currentLocation}/>
             <MapView
                 provider= {PROVIDER_GOOGLE}
                 ref={mapRef}
@@ -133,9 +133,7 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
               )
             }
             {
-              locations.map((location, index) => {
-
-                  if(route && (route.source.name === location.name || route.destination.name === location.name)){
+              route && route.route?.map((location, index) => {
                     return (
                       <Marker
                       key={`${index}`} 
@@ -144,15 +142,6 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
                       pinColor={route.colorIndicator}
                       />
                     )
-                  }
-                  return (
-                    <Marker
-                      key={`${index}`} 
-                      coordinate={{ latitude: location.latitude, longitude: location.longitude }}
-                      title={location.name}
-                      pinColor={'black'}
-                    />
-                  );
               })
             }
             </MapView>

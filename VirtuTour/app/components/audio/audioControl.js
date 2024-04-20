@@ -25,7 +25,7 @@ const AudioControls = () => {
         }
     }
 
-    const playAudio = async (source) => {
+    const playAudio = async (source, positionMillis = -1) => {
         
         if(!source)
             return
@@ -35,7 +35,12 @@ const AudioControls = () => {
         // Recheck whether to handle if audio is not loaded.
         if(status?.isLoaded && !status.isPlaying)
         {
-            await source.playAsync()
+            if(positionMillis == -1)
+                await source.playAsync()
+            else
+                await source.playFromPositionAsync(positionMillis)
+        }else{
+            // console.log(status)
         }
     }
 

@@ -13,19 +13,16 @@ const initialState = {
 const mapReducer = (state = initialState, action) =>{
     switch(action.type){
         case 'INIT_MAP_REF':
-            console.log("Action Type: "+action.type+"mapRef"+action.mapRef)
             return {
                 ...state, 
                 mapRef: action.mapRef
             }
         case 'SET_ROUTE':
-            console.log("Action Type: "+action.type)
             return {
             ...state,
             routeObj: action.routeObj,
         }
         case 'SET_WAYPOINTS':
-            console.log("Action Type: "+action.type, " wayPoints: "+ action.wayPoints)
             return {
                 ...state,
                 wayPoints: action.wayPoints,
@@ -37,13 +34,11 @@ const mapReducer = (state = initialState, action) =>{
                 currentLocation: action.currentLocation
             }
         case 'SET_CURRENT_PLACE':
-            console.log("Action Type: "+action.type, " wayPoints: "+ action.currentPlace)
             return {
                 ...state,
                 currentPlace : action.currentPlace
             }
         case 'START_NAVIGATION':
-            console.log("Action Type: "+action.type, " navigation: "+ action.navigation)
             return {
                 ...state,
                 navigation: action.navigation
