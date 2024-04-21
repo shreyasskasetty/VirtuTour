@@ -1,60 +1,50 @@
 import {SterlingCEvansLibrary,
-    BrightBuilding,
     CenturyTree,
-    RudderComplex,
     AggiePark,
     KyleField,
     MemorialStudentCenter,
     SimpsonDrillField,
-    ZachryBuilding,
-    HaynesEngineeringBuilding,
-    FoxRunBasketBallCourt,
+    BonFire,
+    SpiritPlaza,
     London2311
 } from "./places.js"
 
 const route1 = {
-                source: SterlingCEvansLibrary, 
+                source: BonFire, 
                 destination: MemorialStudentCenter, 
-                route:[ SterlingCEvansLibrary, BrightBuilding, ZachryBuilding, 
-                        HaynesEngineeringBuilding, CenturyTree, RudderComplex, SimpsonDrillField,
+                route:[ BonFire, SpiritPlaza, CenturyTree, SimpsonDrillField, 
                         KyleField, AggiePark, MemorialStudentCenter],
-                colorIndicator: 'grey'
+                colorIndicator: 'red'
             };
 
 const route2 = {
                 source: MemorialStudentCenter, 
-                destination: ZachryBuilding,
+                destination: BonFire,
                 route: [MemorialStudentCenter, SimpsonDrillField, KyleField, AggiePark, 
-                        CenturyTree, RudderComplex, SterlingCEvansLibrary,HaynesEngineeringBuilding, 
-                        BrightBuilding, ZachryBuilding],
-                colorIndicator: 'pink'
+                        CenturyTree, SpiritPlaza, SterlingCEvansLibrary, BonFire],
+                colorIndicator: 'green'
 };  
 
 const route3 = {
-                source: ZachryBuilding,
+                source: SterlingCEvansLibrary,
                 destination: MemorialStudentCenter,
-                route: [ZachryBuilding, BrightBuilding, HaynesEngineeringBuilding,
-                        SterlingCEvansLibrary, RudderComplex, CenturyTree, AggiePark,
+                route: [ SterlingCEvansLibrary, SpiritPlaza, CenturyTree, AggiePark,
                         KyleField, SimpsonDrillField, MemorialStudentCenter],
-                colorIndicator: 'black'
+                colorIndicator: 'yellow'
 };
 
 const route4 = {
                 source: KyleField,
-                destination: ZachryBuilding,
-                route: [ KyleField, AggiePark, MemorialStudentCenter, CenturyTree,
-                         RudderComplex,HaynesEngineeringBuilding, BrightBuilding, 
-                         ZachryBuilding ],
-                colorIndicator: 'green'
+                destination: BonFire,
+                route: [ KyleField, AggiePark, MemorialStudentCenter, CenturyTree, SpiritPlaza, BonFire],
+                colorIndicator: 'blue'
 };
 
 const route5 = {
         source: London2311,
-        destination: ZachryBuilding,
-        route: [ London2311, FoxRunBasketBallCourt, KyleField, AggiePark,
-                MemorialStudentCenter ,CenturyTree,
-                RudderComplex,HaynesEngineeringBuilding, BrightBuilding, 
-                        ZachryBuilding ],
+        destination: SpiritPlaza,
+        route: [London2311, KyleField, AggiePark,
+                MemorialStudentCenter ,CenturyTree, BonFire, SpiritPlaza],
         colorIndicator: 'green'
 };
 

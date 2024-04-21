@@ -87,8 +87,8 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
           mapRef.current.animateToRegion({
             latitude,
             longitude,
-            latitudeDelta: 0.01, // Adjust as needed
-            longitudeDelta: 0.01, // Adjust as needed
+            latitudeDelta: 0.001, // Adjust as needed
+            longitudeDelta: 0.001, // Adjust as needed
           }, 500); // 1500 milliseconds for the animation
       }
       
@@ -110,6 +110,8 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
                 
                 showsUserLocation
                 showsCompass
+                mapType={"satellite"}
+                showsTraffic = {true}
                 onMapReady={zoomInOnMapReady}
                 
             >

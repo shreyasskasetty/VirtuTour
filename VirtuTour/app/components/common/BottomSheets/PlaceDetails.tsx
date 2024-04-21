@@ -6,6 +6,7 @@ import { setContentType } from '../../../context/actions/bottomSheetActions';
 import { placeDetailStyles } from './PlaceDetails.style';
 import { startNavigation } from '../../../context/actions/mapActions';
 import { current } from '@reduxjs/toolkit';
+import ImageCarousel from './ImageCarousel';
 
 const PlaceDetail = ({bottomSheetRef, tourType, currentPlace, setContentType, startNavigation }) => {
   const handleExitButtonClick = () => {
@@ -37,8 +38,8 @@ const PlaceDetail = ({bottomSheetRef, tourType, currentPlace, setContentType, st
           </TouchableOpacity>
         </View>
         {currentPlace && <View style={placeDetailStyles.contentContainer}>
-          <Text style={placeDetailStyles.headerText}>{currentPlace?.name}</Text>        
-          <Image style={placeDetailStyles.image} alt={"No Image"} source={currentPlace?.image} />
+          <Text style={placeDetailStyles.headerText}>{currentPlace?.name}</Text>     
+            <ImageCarousel images={currentPlace?.images.images}/>
           <Text style={placeDetailStyles.descriptionText}>{currentPlace?.description}</Text>
         </View>}
       </View>
