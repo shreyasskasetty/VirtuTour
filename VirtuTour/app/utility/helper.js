@@ -1,5 +1,4 @@
-import {Dimensions} from 'react-native';
-
+import {Dimensions, Platform} from 'react-native';
 const {height: SCREEN_HEIGHT, width: SCREEN_WIDTH} = Dimensions.get('window');
 
 const getScreenSize = (percentage)=> {
@@ -22,3 +21,5 @@ const getCenterLocation = (routes) => {
     return {latitude: averageLat, longitude: averageLng}
 }
 export {SCREEN_HEIGHT, SCREEN_WIDTH, getScreenSize, getCenterLocation};
+
+export const isWeb = Platform.OS === "web";

@@ -7,12 +7,19 @@ import { startNavigation } from '../../../context/actions/mapActions';
 import { setContentType } from '../../../context/actions/bottomSheetActions';
 import { BOTTOM_SHEET_PLACE_DETAIL } from '../../../context/constants';
 
-const TourPreviewContent = ({route, setContentType, startNavigation}) => {
+const TourPreviewContent = ({route, setContentType,mapRef, currentLocation, startNavigation}) => {
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
 
   const handleStartButtonPress = () =>{
     console.log('Navigation Started!')
+    const { latitude, longitude } = currentLocation;
+    mapRef.current.animateToRegion({
+      latitude,
+      longitude,
+      latitudeDelta: 0.001, // Adjust as needed
+      longitudeDelta: 0.001, // Adjust as needed
+    }, 500); // 1500 milliseconds for the animation
     startNavigation(true);
     setContentType({ contentType: BOTTOM_SHEET_PLACE_DETAIL});
   }
@@ -62,6 +69,8 @@ const TourPreviewContent = ({route, setContentType, startNavigation}) => {
 const mapStateToProps = (state)=>{
     return {
         route: state.map.routeObj,
+        mapRef: state.map.mapRef,
+        currentLocation: state.map.currentLocation
     }   
   }
 

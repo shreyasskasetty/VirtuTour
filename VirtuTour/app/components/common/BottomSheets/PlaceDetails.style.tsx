@@ -7,11 +7,12 @@ export const placeDetailStyles = StyleSheet.create({
     flexDirection: 'column',
   },
   buttonsContainer: {
+    marginTop: 10,
     flexDirection: 'row',
     display: 'flex',
     flex: 1,
     width: '100%',
-    flexGrow: 0.1,
+    flexGrow: 0.18,
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: 10
@@ -34,6 +35,8 @@ export const placeDetailStyles = StyleSheet.create({
     marginBottom: 10
   },
   descriptionText: {
+    padding: 20,
+    textAlign: 'justify',
     fontSize: 16,
   },
   contentContainer: {
