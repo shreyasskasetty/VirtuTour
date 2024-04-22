@@ -14,8 +14,15 @@ export const placeDetailStyles = StyleSheet.create({
     width: '100%',
     flexGrow: 0.18,
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: 10
+    paddingRight: 10,
+    justifyContent: 'space-between',
+  },
+  nextStopText:{
+    marginLeft: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'black'
   },
   exitButton: {
     height: 35,

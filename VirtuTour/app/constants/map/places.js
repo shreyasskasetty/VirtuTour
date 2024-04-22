@@ -1,5 +1,5 @@
 import { Asset } from 'expo-asset';
-import {MSCImages,KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages, MathewGainesStatueImages} from './images'
+import {MSCImages, KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages, MathewGainesStatueImages} from './images'
 const SterlingCEvansLibrary = {
     name: "Sterlings C Evans Library",
     latitude: 30.61708581996873, 
@@ -54,14 +54,14 @@ const SimpsonDrillField = {
     description: "This vast open field, named in honor of Colonel James C. Simpson, a former commandant of the Corps of Cadets, is a vital part of the Aggie experience. Simpson Drill Field is synonymous with the Corps of Cadets, the student military organization known for its precision and discipline. This field is where future leaders are shaped, witnessing countless hours of drills, marches, and ceremonies. The sight of cadets in formation, moving in unison, is a powerful embodiment of the discipline and commitment that the Corps instills in its members. The field also plays host to a variety of campus events, including the revered Muster ceremony, an annual tradition where Aggies gather to honor those who have passed away in the previous year. This solemn event underscores the tight-knit community and enduring spirit of Texas A&M. Around Simpson Drill Field, the presence of historic buildings adds to the sense of tradition. As you look around, you can feel the legacy and spirit of the Aggies who have trained and marched here, a legacy that continues to inspire and mold the character of students at Texas A&M. Simpson Drill Field isn't just a physical space; it's a testament to the values of leadership, honor, and respect that are central to the Aggie ethos."
 }
 
-// const London2311 = {
-//     name: "London 2311",
-//     latitude: 30.590578606177363, 
-//     longitude: -96.34264845876957,
-//     images: SterlingCEvansLibrary,
-//     track : Asset.fromModule(require('../../constants/audio/SterlingCEvansLibrary.mp3')),
-//     description: "Spirit Plaza at Texas A&M University serves as a poignant reminder of the institution’s core values and traditions. Centrally located, this plaza is dedicated to honoring Aggie traditions like Muster and Silver Taps, which solemnly remember students who have passed. The Plaza also embodies the Aggie Honor Code and celebrates virtues such as respect, excellence, and integrity. Funded by the class of 1969 and other alumni groups, Spirit Plaza is not only a physical space but a symbolic one, where students reflect on their responsibilities and the deep bonds that connect the Aggie community across generations."
-// }
+const London2311 = {
+    name: "London 2311",
+    latitude: 30.590578606177363, 
+    longitude: -96.34264845876957,
+    images: SterlingCEvansLibrary,
+    track : Asset.fromModule(require('../../constants/audio/SterlingCEvansLibrary.mp3')),
+    description: "Spirit Plaza at Texas A&M University serves as a poignant reminder of the institution’s core values and traditions. Centrally located, this plaza is dedicated to honoring Aggie traditions like Muster and Silver Taps, which solemnly remember students who have passed. The Plaza also embodies the Aggie Honor Code and celebrates virtues such as respect, excellence, and integrity. Funded by the class of 1969 and other alumni groups, Spirit Plaza is not only a physical space but a symbolic one, where students reflect on their responsibilities and the deep bonds that connect the Aggie community across generations."
+}
 
 const MathewGainesStatue = {
     name: "Mathew Gaines Statue",

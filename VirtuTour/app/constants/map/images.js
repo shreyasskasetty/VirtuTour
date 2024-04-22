@@ -29,14 +29,13 @@ export const SterlingCEvansLibraryImages = [
     require('../images/Evans2.jpg'),
     require('../images/Evans3.jpg'),
     require('../images/Evans4.jpg'),
-
 ];
 export const SpiritPlazaImages = [
     require('../images/SpiritPlaza1.jpg'),
     require('../images/SpiritPlaza2.jpg'),
     require('../images/SpiritPlaza3.jpg'),
 ];
-export const BonFireMemorilImages = [
+export const BonFireMemorialImages = [
     require('../images/BonfireMemorial1.jpg'),
     require('../images/BonfireMemorial2.jpg'),
     require('../images/BonfireMemorial3.jpg'),
