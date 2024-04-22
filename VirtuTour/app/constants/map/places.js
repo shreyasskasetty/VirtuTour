@@ -112,4 +112,5 @@ export {
     SimpsonDrillField,
     SpiritPlaza,
     BonFire,
+    MathewGainesStatue
 }
