@@ -6,6 +6,7 @@ import google_maps_api from '../../../apis/google_maps_api';
 import { startNavigation } from '../../../context/actions/mapActions';
 import { setContentType } from '../../../context/actions/bottomSheetActions';
 import { BOTTOM_SHEET_PLACE_DETAIL } from '../../../context/constants';
+import PlaceCard from '../../routes/PlaceCard';
 
 const TourPreviewContent = ({route,bottomSheetRef, setContentType,mapRef, currentLocation, startNavigation}) => {
   const [duration, setDuration] = useState(0);
@@ -35,14 +36,11 @@ const TourPreviewContent = ({route,bottomSheetRef, setContentType,mapRef, curren
         const dur = res.data.rows[0].elements[0].duration.text;
         setDistance(dist);
         setDuration(dur);
-        console.log('Distance: '+dist);
-        console.log('Duration: '+dur);
       }
     ).catch((error)=>{
       console.error('Error fetching data: ', error);
     })
   },[duration, distance]);
-
   return (
     <View style={styles.container}>
         <View style={styles.buttonsContainer}>
@@ -60,10 +58,8 @@ const TourPreviewContent = ({route,bottomSheetRef, setContentType,mapRef, curren
       </View>
       <View style={styles.line}/>
       <ScrollView style={styles.routeSteps}>
-        {route.route.map((place, index) => (
-          <View key={place.name} style={styles.step}>
-            <Text style={styles.stepText}>{index + 1}. {place.name}</Text>
-          </View>
+        {route && route.route.map((place, index) => (
+          <PlaceCard sourceName={place.name} source={place.images[0]} key={place.name}/>
         ))}
       </ScrollView>
     </View>
@@ -138,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   routeSteps: {
-    marginLeft: 20,
+    marginLeft: 10,
     flex: 1,
   },
   step: {

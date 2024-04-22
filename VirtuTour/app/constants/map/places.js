@@ -1,5 +1,5 @@
 import { Asset } from 'expo-asset';
-import {KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages, MathewGainesStatueImages} from './images'
+import {MSCImages,KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages, MathewGainesStatueImages} from './images'
 const SterlingCEvansLibrary = {
     name: "Sterlings C Evans Library",
     latitude: 30.61708581996873, 
@@ -40,7 +40,7 @@ const MemorialStudentCenter = {
     name: "Memorial Student Center (MSC)",
     latitude: 30.613170801617507, 
     longitude: -96.34098025513653, 
-    images: MemorialStudentCenter,
+    images: MSCImages,
     track : Asset.fromModule(require('../../constants/audio/MemorialStudentCenter.mp3')),
     description: "Standing here in the Memorial Student Center (MSC) at Texas A&M University, we're in a place that's much more than a student union; it's a living tribute to the Aggie spirit and a memorial to the Aggies who have laid down their lives for their country. The MSC, often referred to as the 'living room' of the campus, is a central hub for student activities and a space that embodies respect, honor, and tradition. As you walk through these halls, you'll notice the solemn atmosphere that distinguishes it from other student centers. It's a tradition here to remove your hat as a sign of respect, acknowledging that the MSC is more than a building; it's a memorial. The walls are adorned with plaques and displays commemorating Aggies' service and sacrifice, reminding us of the deeper values the university upholds. The MSC is also a vibrant center for student life, hosting a variety of student organizations, meeting rooms, lounges, dining facilities, and art exhibitions. The building frequently buzzes with events, cultural programs, and leadership workshops, fostering a sense of community among students. Beyond its role as a student hub, the MSC also houses the Maroon and White Leadership Program and the MSC Student Programs Office, underscoring its commitment to developing student leadership and engagement. It's a place where Aggies come together not just to relax and socialize, but to grow, lead, and remember the values that define their time at Texas A&M."
 }

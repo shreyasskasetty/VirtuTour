@@ -43,6 +43,13 @@ export const BonFireMemorilImages = [
     require('../images/BonfireMemorial4.jpg'),
 ];
 
+export const MSCImages = [
+    require('../images/MSC1.jpg'),
+    require('../images/MSC2.jpg'),
+    require('../images/MSC3.jpg'),
+    require('../images/MSC4.jpg'),
+]
+
 export const MathewGainesStatueImages = [
     require('../images/MathewGaines1.jpg'),
     require('../images/MathewGaines2.jpg'),
