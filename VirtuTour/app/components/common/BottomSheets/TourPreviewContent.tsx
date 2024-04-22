@@ -7,9 +7,13 @@ import { startNavigation } from '../../../context/actions/mapActions';
 import { setContentType } from '../../../context/actions/bottomSheetActions';
 import { BOTTOM_SHEET_PLACE_DETAIL } from '../../../context/constants';
 
-const TourPreviewContent = ({route, setContentType,mapRef, currentLocation, startNavigation}) => {
+const TourPreviewContent = ({route,bottomSheetRef, setContentType,mapRef, currentLocation, startNavigation}) => {
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
+
+  const handleTourPreviewPress = ()=>{
+      bottomSheetRef.current?.snapToIndex(1);
+  }
 
   const handleStartButtonPress = () =>{
     console.log('Navigation Started!')
@@ -45,7 +49,7 @@ const TourPreviewContent = ({route, setContentType,mapRef, currentLocation, star
             <TouchableOpacity style={styles.startButton} onPress={()=>{handleStartButtonPress()}}>
                 <Text style={styles.startButtonText}>Start</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.tourPreviewButton}>
+            <TouchableOpacity style={styles.tourPreviewButton} onPress={()=>{handleTourPreviewPress()}}>
                 <Text style={styles.startButtonText}>Tour Preview</Text>
             </TouchableOpacity>
         </View>

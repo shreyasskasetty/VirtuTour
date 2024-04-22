@@ -79,7 +79,7 @@ const TourRoutesSheet = ({setTourType,tourType, mapRef, wayPoints, navigation, c
         >
           <BottomSheetView style={styles.contentContainer}>
               {content == BOTTOM_SHEET_TOUR_PREVIEW && route && (
-                <TourPreviewContent/>
+                <TourPreviewContent bottomSheetRef ={bottomSheetRef}/>
               )}
               {content == BOTTOM_SHEET_TOUR_LIST &&(
                 <RoutesAndToggle bottomSheetRef = {bottomSheetRef}/>
