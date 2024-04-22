@@ -2,11 +2,11 @@ import {SterlingCEvansLibrary,
     CenturyTree,
     AggiePark,
     KyleField,
+    MathewGainesStatue,
     MemorialStudentCenter,
     SimpsonDrillField,
     BonFire,
     SpiritPlaza,
-    London2311
 } from "./places.js"
 
 const route1 = {
@@ -18,9 +18,9 @@ const route1 = {
             };
 
 const route2 = {
-                source: MemorialStudentCenter, 
+                source: SimpsonDrillField, 
                 destination: BonFire,
-                route: [MemorialStudentCenter, SimpsonDrillField, KyleField, AggiePark, 
+                route: [SimpsonDrillField, MemorialStudentCenter, KyleField, AggiePark, 
                         CenturyTree, SpiritPlaza, SterlingCEvansLibrary, BonFire],
                 colorIndicator: 'green'
 };  
@@ -41,11 +41,19 @@ const route4 = {
 };
 
 const route5 = {
-        source: London2311,
-        destination: SpiritPlaza,
-        route: [London2311, KyleField, AggiePark,
-                MemorialStudentCenter ,CenturyTree, BonFire, SpiritPlaza],
-        colorIndicator: 'green'
-};
+        source: MemorialStudentCenter, 
+        destination: SterlingCEvansLibrary,
+        route: [MemorialStudentCenter, MathewGainesStatue, 
+                CenturyTree, SterlingCEvansLibrary],
+        colorIndicator: 'maroon'
+}; 
 
-export default [route1, route2, route3, route4, route5];
+// const route5 = {
+//         source: London2311,
+//         destination: SpiritPlaza,
+//         route: [London2311, KyleField, AggiePark,
+//                 MemorialStudentCenter ,CenturyTree, BonFire, SpiritPlaza],
+//         colorIndicator: 'green'
+// };
+
+export default [route5, route1, route2, route3, route4 ];

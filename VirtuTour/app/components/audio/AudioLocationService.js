@@ -20,7 +20,7 @@ const Background_music = {
     name: "Background Music",
     latitude: 30.61708581996873, 
     longitude: -96.33897274238043,
-    track : 'https://sample-music.netlify.app/Hate%20Me.mp3'
+    track : 'https://github.com/shreyasskasetty/VirtuTour/blob/main/VirtuTour/app/constants/audio/background-music.mp3?raw=true'
 }
 
 function buildTrackInfo (track, volume = 1, shouldPlay = true){
@@ -85,7 +85,7 @@ const AudioLocationService = (currentLocation, routes) => {
 export default AudioLocationService;
 
 
-const background_track = 'https://sample-music.netlify.app/Hate%20Me.mp3'
+const background_track = 'https://github.com/shreyasskasetty/VirtuTour/blob/main/VirtuTour/app/constants/audio/background-music.mp3?raw=true'
 
 const createSoundSource = async (track, options) => {
     let soundSource = getSoundSource;
