@@ -38,8 +38,8 @@ const KyleField = {
 
 const MemorialStudentCenter = {
     name: "Memorial Student Center (MSC)",
-    latitude: 30.61230065086328, 
-    longitude: -96.34152923209598,
+    latitude: 30.612892804161383, 
+    longitude: -96.34144621857993,
     images: MemorialStudentCenter,
     track : Asset.fromModule(require('../../constants/audio/MemorialStudentCenter.mp3')),
     description: "Standing here in the Memorial Student Center (MSC) at Texas A&M University, we're in a place that's much more than a student union; it's a living tribute to the Aggie spirit and a memorial to the Aggies who have laid down their lives for their country. The MSC, often referred to as the 'living room' of the campus, is a central hub for student activities and a space that embodies respect, honor, and tradition. As you walk through these halls, you'll notice the solemn atmosphere that distinguishes it from other student centers. It's a tradition here to remove your hat as a sign of respect, acknowledging that the MSC is more than a building; it's a memorial. The walls are adorned with plaques and displays commemorating Aggies' service and sacrifice, reminding us of the deeper values the university upholds. The MSC is also a vibrant center for student life, hosting a variety of student organizations, meeting rooms, lounges, dining facilities, and art exhibitions. The building frequently buzzes with events, cultural programs, and leadership workshops, fostering a sense of community among students. Beyond its role as a student hub, the MSC also houses the Maroon and White Leadership Program and the MSC Student Programs Office, underscoring its commitment to developing student leadership and engagement. It's a place where Aggies come together not just to relax and socialize, but to grow, lead, and remember the values that define their time at Texas A&M."
@@ -47,8 +47,8 @@ const MemorialStudentCenter = {
 
 const SimpsonDrillField = {
     name: "Simpson Drill Field",
-    latitude: 30.61358754281808, 
-    longitude: -96.3428402171899,
+    latitude: 30.613168699091883, 
+    longitude: -96.34235969461078,
     images: SimpsonDrillFieldImages,
     track : Asset.fromModule(require('../../constants/audio/SimpsonDrillField.mp3')),
     description: "This vast open field, named in honor of Colonel James C. Simpson, a former commandant of the Corps of Cadets, is a vital part of the Aggie experience. Simpson Drill Field is synonymous with the Corps of Cadets, the student military organization known for its precision and discipline. This field is where future leaders are shaped, witnessing countless hours of drills, marches, and ceremonies. The sight of cadets in formation, moving in unison, is a powerful embodiment of the discipline and commitment that the Corps instills in its members. The field also plays host to a variety of campus events, including the revered Muster ceremony, an annual tradition where Aggies gather to honor those who have passed away in the previous year. This solemn event underscores the tight-knit community and enduring spirit of Texas A&M. Around Simpson Drill Field, the presence of historic buildings adds to the sense of tradition. As you look around, you can feel the legacy and spirit of the Aggies who have trained and marched here, a legacy that continues to inspire and mold the character of students at Texas A&M. Simpson Drill Field isn't just a physical space; it's a testament to the values of leadership, honor, and respect that are central to the Aggie ethos."
