@@ -1,5 +1,5 @@
 import { Asset } from 'expo-asset';
-import {KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages} from './images'
+import {KyleFieldImages, AggieParkImages, CenturyTreeImages, SterlingCEvansLibraryImages, BonFireMemorialImages, SpiritPlazaImages, SimpsonDrillFieldImages, MathewGainesStatueImages} from './images'
 const SterlingCEvansLibrary = {
     name: "Sterlings C Evans Library",
     latitude: 30.61708581996873, 
@@ -38,8 +38,8 @@ const KyleField = {
 
 const MemorialStudentCenter = {
     name: "Memorial Student Center (MSC)",
-    latitude: 30.612892804161383, 
-    longitude: -96.34144621857993,
+    latitude: 30.613170801617507, 
+    longitude: -96.34098025513653, 
     images: MemorialStudentCenter,
     track : Asset.fromModule(require('../../constants/audio/MemorialStudentCenter.mp3')),
     description: "Standing here in the Memorial Student Center (MSC) at Texas A&M University, we're in a place that's much more than a student union; it's a living tribute to the Aggie spirit and a memorial to the Aggies who have laid down their lives for their country. The MSC, often referred to as the 'living room' of the campus, is a central hub for student activities and a space that embodies respect, honor, and tradition. As you walk through these halls, you'll notice the solemn atmosphere that distinguishes it from other student centers. It's a tradition here to remove your hat as a sign of respect, acknowledging that the MSC is more than a building; it's a memorial. The walls are adorned with plaques and displays commemorating Aggies' service and sacrifice, reminding us of the deeper values the university upholds. The MSC is also a vibrant center for student life, hosting a variety of student organizations, meeting rooms, lounges, dining facilities, and art exhibitions. The building frequently buzzes with events, cultural programs, and leadership workshops, fostering a sense of community among students. Beyond its role as a student hub, the MSC also houses the Maroon and White Leadership Program and the MSC Student Programs Office, underscoring its commitment to developing student leadership and engagement. It's a place where Aggies come together not just to relax and socialize, but to grow, lead, and remember the values that define their time at Texas A&M."
@@ -54,13 +54,22 @@ const SimpsonDrillField = {
     description: "This vast open field, named in honor of Colonel James C. Simpson, a former commandant of the Corps of Cadets, is a vital part of the Aggie experience. Simpson Drill Field is synonymous with the Corps of Cadets, the student military organization known for its precision and discipline. This field is where future leaders are shaped, witnessing countless hours of drills, marches, and ceremonies. The sight of cadets in formation, moving in unison, is a powerful embodiment of the discipline and commitment that the Corps instills in its members. The field also plays host to a variety of campus events, including the revered Muster ceremony, an annual tradition where Aggies gather to honor those who have passed away in the previous year. This solemn event underscores the tight-knit community and enduring spirit of Texas A&M. Around Simpson Drill Field, the presence of historic buildings adds to the sense of tradition. As you look around, you can feel the legacy and spirit of the Aggies who have trained and marched here, a legacy that continues to inspire and mold the character of students at Texas A&M. Simpson Drill Field isn't just a physical space; it's a testament to the values of leadership, honor, and respect that are central to the Aggie ethos."
 }
 
-const London2311 = {
-    name: "London 2311",
-    latitude: 30.590578606177363, 
-    longitude: -96.34264845876957,
-    images: SterlingCEvansLibrary,
-    track : Asset.fromModule(require('../../constants/audio/SterlingCEvansLibrary.mp3')),
-    description: "Spirit Plaza at Texas A&M University serves as a poignant reminder of the institution’s core values and traditions. Centrally located, this plaza is dedicated to honoring Aggie traditions like Muster and Silver Taps, which solemnly remember students who have passed. The Plaza also embodies the Aggie Honor Code and celebrates virtues such as respect, excellence, and integrity. Funded by the class of 1969 and other alumni groups, Spirit Plaza is not only a physical space but a symbolic one, where students reflect on their responsibilities and the deep bonds that connect the Aggie community across generations."
+// const London2311 = {
+//     name: "London 2311",
+//     latitude: 30.590578606177363, 
+//     longitude: -96.34264845876957,
+//     images: SterlingCEvansLibrary,
+//     track : Asset.fromModule(require('../../constants/audio/SterlingCEvansLibrary.mp3')),
+//     description: "Spirit Plaza at Texas A&M University serves as a poignant reminder of the institution’s core values and traditions. Centrally located, this plaza is dedicated to honoring Aggie traditions like Muster and Silver Taps, which solemnly remember students who have passed. The Plaza also embodies the Aggie Honor Code and celebrates virtues such as respect, excellence, and integrity. Funded by the class of 1969 and other alumni groups, Spirit Plaza is not only a physical space but a symbolic one, where students reflect on their responsibilities and the deep bonds that connect the Aggie community across generations."
+// }
+
+const MathewGainesStatue = {
+    name: "Mathew Gaines Statue",
+    latitude: 30.6137198204609,
+    longitude: -96.34102989010285,
+    images: MathewGainesStatueImages,
+    track : Asset.fromModule(require('../../constants/audio/MathewGaines.mp3')),
+    description: "The Matthew Gaines Statue at Texas A&M University stands as a poignant tribute to a pivotal figure in Texas history. A former slave who became a state senator, Gaines was instrumental in the founding of the Texas public school system. His statue is a symbol of his enduring legacy of advocating for education and civil rights. Positioned prominently on campus, it serves as a constant reminder to students and faculty of the power of resilience and the importance of fighting for equality. This memorial not only honors his contributions but also inspires ongoing discussions about justice and social change."
 }
 
 const SpiritPlaza = {
@@ -89,8 +98,8 @@ const locations = [
     MemorialStudentCenter,
     SimpsonDrillField,
     BonFire,
+    MathewGainesStatue,
     SpiritPlaza,
-    London2311
 ]
 
 export {
@@ -103,5 +112,4 @@ export {
     SimpsonDrillField,
     SpiritPlaza,
     BonFire,
-    London2311
 }

@@ -111,7 +111,6 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
                 showsUserLocation
                 showsCompass
                 mapType={"satellite"}
-                showsTraffic = {true}
                 onMapReady={zoomInOnMapReady}
                 
             >
@@ -135,15 +134,27 @@ const Map = ({mapRef, initMapRef,tourType, route, wayPoints, navigation, current
               )
             }
             {
-              route && route.route?.map((location, index) => {
-                    return (
-                      <Marker
-                      key={`${index}`} 
-                      coordinate={{ latitude: location.latitude, longitude: location.longitude }}
-                      title={location.name}
-                      pinColor={route.colorIndicator}
-                      />
-                    )
+                tourType == GUIDE_TOUR_TYPE && route && route.route?.map((location, index) => {
+                      return (
+                        <Marker
+                        key={`${index}`} 
+                        coordinate={{ latitude: location.latitude, longitude: location.longitude }}
+                        title={location.name}
+                        pinColor={route.colorIndicator}
+                        />
+                      )
+                })
+            }
+            {
+              tourType == FREE_ROAM_TOUR_TYPE && locations && locations.map((location, index)=>{
+                  return (
+                    <Marker
+                    key={`${index}`} 
+                    coordinate={{ latitude: location.latitude, longitude: location.longitude }}
+                    title={location.name}
+                    pinColor={"red"}
+                    />
+                  )
               })
             }
             </MapView>
