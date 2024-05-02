@@ -12,6 +12,12 @@
 
 VirtuTour app offers an innovative way to explore Texas A&M University by providing an immersive, interactive virtual tour guide experience. As users navigate through the campus, VirtuTour detects their proximity to historic sites and landmarks, automatically presenting rich audio narratives and visual stories that delve into the history and culture of each location. This app is perfect for enhancing the campus visit experience, offering a deep dive into the university's heritage in a modern, engaging way.
 
+<div align="center" style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px">
+  <img src="VirtuTour/screenshots/ss4.png" alt="Campus Overview" width="200px">
+  <img src="VirtuTour/screenshots/ss1.png" alt="Historical Site Detail View" width="200px">
+<img src="VirtuTour/screenshots/ss3.png" alt="Interactive Tour Experience in Action" width="200px">
+  <img src="VirtuTour/screenshots/ss2.png" alt="Interactive Tour Experience in Action" width="200px">
+</div>
 <div>
 <img src="https://img.shields.io/badge/-React_Native-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
 <img src="https://img.shields.io/badge/-Expo-black?style=for-the-badge&logoColor=white&logo=expo&color=000020" alt="expo" />
