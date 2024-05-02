@@ -21,6 +21,9 @@ VirtuTour app offers an innovative way to explore Texas A&M University by provid
  - Node.js
  - React Native
  - Expo
+ - Gesture Handler
+ - Reanimated
+ - Google Maps API
 
 ## <a name="features">🔋 Features</a>
 
